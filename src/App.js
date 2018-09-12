@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import * as ReadableAPI from './ReadableAPI'
+import * as ReadableAPI from './utils/ReadableAPI'
 import './App.css';
 
 class App extends Component {
-  render() {
+  componentDidMount() {
     try{
       ReadableAPI.getAllCategories().then((categories) => {
         console.log(categories)
@@ -15,10 +15,12 @@ class App extends Component {
     catch(error){
       console.log(error)
     }
+  }
+  render() {
     return (
       <div className="App">
       </div>
-    );
+    )
   }
 }
 
