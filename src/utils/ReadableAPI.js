@@ -14,22 +14,16 @@ if (!token)
   export const getAllCategories = () =>
     fetch(`${api}/categories`, { headers })
       .then(res => res.json())
-      console.log(`${api}/categories`)
   
   export const getPostsByCat = () =>
     fetch(`${api}/${category}/posts`, { headers })
       .then(res => res.json())
-      console.log(`${api}/${category}/posts`)  
+  
+  export const getAllPosts = () =>
+    fetch(`${api}/posts`, { headers })
+      .then(res => res.json()) 
 
-/*export const get = (bookId) =>
-  fetch(`${api}/books/${bookId}`, { headers })
-    .then(res => res.json())
-    .then(data => data.book)
-
-export const getAll = () =>
-  fetch(`${api}/books`, { headers })
-    .then(res => res.json())
-    .then(data => data.books)
+/*
 
 export const update = (book, shelf) =>
   fetch(`${api}/books/${book.id}`, {

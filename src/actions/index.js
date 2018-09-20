@@ -1,104 +1,79 @@
+export const LOAD_POSTS = 'LOAD_POSTS'
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
 export const EDIT_POST = 'EDIT_POST'
+export const LOAD_COMMENT = 'LOAD_COMMENT'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const UP_VOTE = 'UP_VOTE'
 export const DOWN_VOTE = 'DOWN_VOTE'
 
-export function addPost ({ id, parentid, title, author, date, body, score, deleted, parentdeleted }) {
+export function loadPosts({posts}){
+  return {
+    type: LOAD_POSTS,
+    posts,
+  }
+}
+export function addPost ({ posts }) {
   return {
     type: ADD_POST,
-    id,
-    parentid,
-    title,
-    author,
-    date,
-    body,
-    score,
-    deleted,
-    parentdeleted,
+    posts,
   }
 }
 
-export function removePost ({ id, parentid, deleted, parentdeleted }) {
+export function removePost ({ posts }) {
   return {
     type: REMOVE_POST,
-    id,
-    parentid,
-    deleted,
-    parentdeleted,
+    posts,
   }
 }
 
-export function editPost ({ id, parentid, date, body, deleted, parentdeleted }) {
+export function editPost ({ posts }) {
   return {
     type: EDIT_POST,
-    id,
-    parentid,
-    date,
-    body,
-    deleted,
-    parentdeleted,
+    posts,
   }
 }
 
-export function addComment ({ id, parentid, title, author, date, body, score, deleted, parentdeleted }) {
+export function loadComment({comments}){
+  return {
+    type: LOAD_COMMENT,
+    comments,
+  }
+}
+
+export function addComment ({ comments }) {
   return {
     type: ADD_COMMENT,
-    id,
-    parentid,
-    title,
-    author,
-    date,
-    body,
-    score,
-    deleted,
-    parentdeleted,
+    comments,
   }
 }
 
-export function removeComment ({ id, parentid, deleted, parentdeleted }) {
+export function removeComment ({ comments }) {
   return {
     type: REMOVE_COMMENT,
-    id,
-    parentid,
-    deleted,
-    parentdeleted,
+    comments,
   }
 }
 
-export function editComment ({ id, parentid, date, body, deleted, parentdeleted }) {
+export function editComment ({ comments }) {
   return {
     type: EDIT_COMMENT,
-    id,
-    parentid,
-    date,
-    body,
-    deleted,
-    parentdeleted,
+    comments,
   }
 }
 
-export function upVote ({ id, parentid, score, deleted, parentdeleted }) {
+export function upVote ({ posts }) {
   return {
     type: UP_VOTE,
-    id,
-    parentid,
-    score,
-    deleted,
-    parentdeleted,
+    posts,
   }
 }
 
-export function downVote ({ id, parentid, score, deleted, parentdeleted }) {
+export function downVote ({ posts }) {
   return {
     type: DOWN_VOTE,
-    id,
-    parentid,
-    score,
-    deleted,
-    parentdeleted,
+    posts,
   }
 }

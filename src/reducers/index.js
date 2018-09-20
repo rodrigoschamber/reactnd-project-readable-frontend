@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 
 import {
+  LOAD_POSTS,
   ADD_POST,
   REMOVE_POST,
   EDIT_POST,
+  LOAD_COMMENT,
   ADD_COMMENT,
   REMOVE_COMMENT,
   EDIT_COMMENT,
@@ -13,6 +15,8 @@ import {
 
 function post (state={}, action){
   switch (action.type){
+    case LOAD_POSTS:
+      return "Testing Redux"
     case ADD_POST:
       return null
     case REMOVE_POST:
@@ -25,6 +29,8 @@ function post (state={}, action){
 }
 function comment (state={}, action){
   switch (action.type){
+    case LOAD_COMMENT:
+      return null
     case ADD_COMMENT:
       return null
     case REMOVE_COMMENT:
