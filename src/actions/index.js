@@ -1,4 +1,4 @@
-export const LOAD_POSTS = 'LOAD_POSTS'
+export const LOAD_POST = 'LOAD_POST'
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
 export const EDIT_POST = 'EDIT_POST'
@@ -11,7 +11,7 @@ export const DOWN_VOTE = 'DOWN_VOTE'
 
 export function loadPosts({posts}){
   return {
-    type: LOAD_POSTS,
+    type: LOAD_POST,
     posts,
   }
 }

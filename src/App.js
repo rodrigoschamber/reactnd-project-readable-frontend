@@ -17,7 +17,7 @@ class App extends Component {
       this.setState(() => ({
         posts: store.getState()
       }))
-  })
+    })
     try{
       ReadableAPI.getAllCategories().then((categoriesToLoad) => {
         console.log(categoriesToLoad)
