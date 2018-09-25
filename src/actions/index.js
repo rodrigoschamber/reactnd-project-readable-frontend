@@ -8,6 +8,7 @@ export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const UP_VOTE = 'UP_VOTE'
 export const DOWN_VOTE = 'DOWN_VOTE'
+export const LOAD_CATEGORY = 'LOAD_CATEGORY'
 
 export function loadPosts({posts}){
   return {
@@ -75,5 +76,11 @@ export function downVote ({ posts }) {
   return {
     type: DOWN_VOTE,
     posts,
+  }
+}
+export function loadCategory ({ category }) {
+  return {
+    type: LOAD_CATEGORY,
+    category,
   }
 }
