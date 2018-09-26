@@ -6,7 +6,7 @@ import { loadPosts, loadCategory } from './actions'
 import { connect } from 'react-redux';
 import './App.css';
 
-class App extends Component {
+class ReadableApp extends Component {
   componentDidMount() {
     try{
       ReadableAPI.getAllCategories().then((categoriesToLoad) => {
@@ -27,9 +27,8 @@ class App extends Component {
   }
   render() {   
     return (
-      <div className="App">
+      <div className="ReadableApp">
         <MainPostForm></MainPostForm>
-        
         <MainPostItem></MainPostItem>
       </div>
     )
@@ -37,7 +36,8 @@ class App extends Component {
 }
 
 function mapStateToProps(toProps){
+
   return toProps
 }
 
-export default connect (mapStateToProps)(App);
+export default connect (mapStateToProps)(ReadableApp);

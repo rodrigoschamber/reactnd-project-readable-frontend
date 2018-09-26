@@ -1,9 +1,9 @@
 import React from 'react'
-//import PropTypes from 'prop-types'
-import '../App.js'
+import { connect } from 'react-redux';
+import '../ReadableApp.js'
 
-export default class MainPostForm extends React.Component{
-    static propTypes = { 
+class MainPostForm extends React.Component{
+    static propTypes = {
         /*author:PropTypes.string.isRequired,
         body:PropTypes.string.isRequired,
         category:PropTypes.string.isRequired,
@@ -24,7 +24,7 @@ export default class MainPostForm extends React.Component{
                             <label>Title</label>
                         </div>
                         <div className="col-75">
-                            <input type="text" id="fname" name="firstname" placeholder="Type a title"></input>
+                            <input type="text" id="fname" name="title" placeholder="Type a title"></input>
                         </div>
                     </div>
                     <div className="row">
@@ -32,7 +32,7 @@ export default class MainPostForm extends React.Component{
                             <label>Author</label>
                         </div>
                         <div className="col-75">
-                            <input type="text" id="lname" name="lastname" placeholder="Type your name"></input>
+                            <input type="text" id="lname" name="name" placeholder="Type your name"></input>
                         </div>
                     </div>
                     
@@ -41,7 +41,7 @@ export default class MainPostForm extends React.Component{
                             <label>Subject</label>
                         </div>
                         <div className="col-75">
-                            <textarea id="subject" name="subject" placeholder="Type your post here"></textarea>
+                            <textarea id="subject" name="body" placeholder="Type your post here"></textarea>
                         </div>
                     </div>
                     <div className="row">
@@ -52,3 +52,11 @@ export default class MainPostForm extends React.Component{
         )
     }
 }
+function mapStateToProps(toProps){
+
+    return toProps
+  }
+
+export default connect(mapStateToProps)(MainPostForm);
+
+  

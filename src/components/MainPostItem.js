@@ -1,9 +1,9 @@
 import React from 'react'
-//import PropTypes from 'prop-types'
-import '../App.js'
+import { connect } from 'react-redux';
+import '../ReadableApp.js'
 
-export default class MainPostItem extends React.Component{
-    static propTypes = { 
+class MainPostItem extends React.Component{
+    static propTypes = {
         /*author:PropTypes.string.isRequired,
         body:PropTypes.string.isRequired,
         category:PropTypes.string.isRequired,
@@ -14,7 +14,6 @@ export default class MainPostItem extends React.Component{
         title:PropTypes.string.isRequired,
         voteScore:PropTypes.number.isRequired,*/       
     }
-
     render(){
         return(
             <div className="container">
@@ -24,7 +23,7 @@ export default class MainPostItem extends React.Component{
                             <label>Title</label>
                         </div>
                         <div className="col-75">
-                            <label>{this.props.title}</label>
+                            <label>{this.title}</label>
                         </div>
                     </div>
                     <div className="row">
@@ -48,3 +47,8 @@ export default class MainPostItem extends React.Component{
         )
     }
 }
+function mapStateToProps(toProps){
+    return toProps.post
+}
+
+export default connect(mapStateToProps)(MainPostItem);
