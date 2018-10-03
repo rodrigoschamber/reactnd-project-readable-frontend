@@ -19,7 +19,6 @@ class ReadableApp extends Component {
           posts: postsToLoad,
         }))
       })
-      
     }
     catch(error){
       console.log(error)
@@ -28,15 +27,14 @@ class ReadableApp extends Component {
   render() {   
     return (
       <div className="ReadableApp">
-        <MainPostForm></MainPostForm>
-        <MainPostItem></MainPostItem>
+        <MainPostForm/>
+        <MainPostItem/>
       </div>
     )
   }
 }
 
 function mapStateToProps(toProps){
-
   return toProps
 }
 

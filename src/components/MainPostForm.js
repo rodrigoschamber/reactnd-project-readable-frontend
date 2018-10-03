@@ -3,18 +3,6 @@ import { connect } from 'react-redux';
 import '../ReadableApp.js'
 
 class MainPostForm extends React.Component{
-    static propTypes = {
-        /*author:PropTypes.string.isRequired,
-        body:PropTypes.string.isRequired,
-        category:PropTypes.string.isRequired,
-        commentCount:PropTypes.number.isRequired,
-        deleted:PropTypes.bool.isRequired,
-        id:PropTypes.string.isRequired,
-        timestamp:PropTypes.string.isRequired,
-        title:PropTypes.string.isRequired,
-        voteScore:PropTypes.number.isRequired,*/       
-    }
-    
     render(){
         return(
             <div className="container">
@@ -35,7 +23,6 @@ class MainPostForm extends React.Component{
                             <input type="text" id="lname" name="name" placeholder="Type your name"></input>
                         </div>
                     </div>
-                    
                     <div className="row">
                         <div className="col-25">
                             <label>Subject</label>
@@ -53,9 +40,8 @@ class MainPostForm extends React.Component{
     }
 }
 function mapStateToProps(toProps){
-
     return toProps
-  }
+}
 
 export default connect(mapStateToProps)(MainPostForm);
 
