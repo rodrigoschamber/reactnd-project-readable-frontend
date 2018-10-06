@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import {Route} from 'react-router-dom'
 import * as ReadableAPI from './utils/ReadableAPI'
 import MainPostItem from './components/MainPostItem'
-import MainPostForm from './components/MainPostForm'
+//import MainPostForm from './components/MainPostForm'
 import { loadPosts, loadCategory } from './actions'
 import { connect } from 'react-redux';
 import './App.css';
@@ -27,8 +28,11 @@ class ReadableApp extends Component {
   render() {   
     return (
       <div className="ReadableApp">
-        <MainPostForm/>
-        <MainPostItem/>
+        <h2>Readable App </h2>
+        <small>{Date()}</small>
+        <Route exact path="/" render={() => (
+          <MainPostItem/>
+        )}/>
       </div>
     )
   }

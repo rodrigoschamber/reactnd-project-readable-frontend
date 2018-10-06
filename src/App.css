@@ -11,7 +11,7 @@ input[type=text], select, textarea {
 }
 
 label {
-  padding: 12px 12px 12px 0;
+  padding: 1px 1px 1px 0;
   display: inline-block;
 }
 
@@ -38,13 +38,13 @@ input[type=submit]:hover {
 .col-25 {
   float: left;
   width: 25%;
-  margin-top: 6px;
+  margin-top: 2px;
 }
 
 .col-75 {
   float: left;
   width: 75%;
-  margin-top: 6px;
+  margin-top: 2px;
 }
 
 /* Clear floats after the columns */
@@ -52,4 +52,9 @@ input[type=submit]:hover {
   content: "";
   display: table;
   clear: both;
+}
+.react-icons {
+  vertical-align: middle;
+  align-content: center;
+  cursor: pointer;
 }
