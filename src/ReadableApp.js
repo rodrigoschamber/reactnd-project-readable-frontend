@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Route} from 'react-router-dom'
 import * as ReadableAPI from './utils/ReadableAPI'
+import CategoriesBar from './components/CategoriesBar'
 import MainPostItem from './components/MainPostItem'
 //import MainPostForm from './components/MainPostForm'
 import { loadPosts, loadCategory } from './actions'
@@ -28,8 +29,8 @@ class ReadableApp extends Component {
   render() {   
     return (
       <div className="ReadableApp">
-        <h2>Readable App </h2>
-        <small>{Date()}</small>
+        <h2>Readable App</h2>
+        <CategoriesBar/>
         <Route exact path="/" render={() => (
           <MainPostItem/>
         )}/>

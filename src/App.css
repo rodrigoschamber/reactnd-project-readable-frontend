@@ -47,14 +47,18 @@ input[type=submit]:hover {
   margin-top: 2px;
 }
 
-/* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;
   clear: both;
 }
+
 .react-icons {
   vertical-align: middle;
   align-content: center;
+  cursor: pointer;
+}
+
+.link-to-cat {
   cursor: pointer;
 }

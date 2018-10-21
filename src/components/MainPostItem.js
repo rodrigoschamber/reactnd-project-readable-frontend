@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import '../ReadableApp.js'
 import {FaArrowDown, FaArrowUp, FaCube} from 'react-icons/fa'
+import { upVote, downVote } from '../actions'
 //import * as FontAwesome from 'react-icons/fa'
 class MainPostItem extends React.Component{
     render(){
@@ -10,7 +11,7 @@ class MainPostItem extends React.Component{
             const converted = new Date(toString)
             return JSON.stringify(converted)
         }
-        function sortByVoteScore(toSort){
+        function sortByTimestamp(toSort){
             let sortedPosts = toSort.sort((a,b)=>{return b.timestamp - a.timestamp})
             return sortedPosts
         }
@@ -19,7 +20,7 @@ class MainPostItem extends React.Component{
                 return(
                     <div className="container">
                         <small>All posts are sorted by timestamp.</small>
-                        {sortByVoteScore(showingPosts) && showingPosts.map((item)=>(
+                        {sortByTimestamp(showingPosts) && showingPosts.map((item)=>(
                             <form key={item.id}>
                                 <hr/>
                                 <div className="row">
@@ -37,9 +38,17 @@ class MainPostItem extends React.Component{
                                         <label><b>{item.commentCount}</b> comment(s).</label>
                                     </div>
                                     <div className="col-25">
-                                        <FaArrowDown className='react-icons' onClick={null}/>
+                                        <FaArrowDown className='react-icons' onClick={()=>
+                                            this.props.dispatch(downVote({
+                                                posts: item,
+                                            }))
+                                        }/>
                                         <b><label><small>{item.voteScore}</small></label></b>
-                                        <FaArrowUp className='react-icons' onClick={null}/>
+                                        <FaArrowUp className='react-icons' onClick={()=>
+                                            this.props.dispatch(upVote({
+                                                posts: item,
+                                            }))
+                                        }/>
                                     </div>
                                 </div>
                                 <hr/>
@@ -49,7 +58,7 @@ class MainPostItem extends React.Component{
                     </div>
                 )
             }
-            else {return null}
+            else return null
         }
         catch(error){console.log(error)}
     }
