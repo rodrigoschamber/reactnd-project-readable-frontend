@@ -45,17 +45,21 @@ function comment (state={}, action){
 function vote (state={}, action){
   switch (action.type){
     case UP_VOTE:
+      action.postToUpdateVoteScore.voteScore = action.postToUpdateVoteScore.voteScore + 1  
+      state.postToUpdateVoteScore = action.postToUpdateVoteScore
       return {
-        [action.posts.voteScore]: action.posts.voteScore + 1,
         ...state,
       }
     case DOWN_VOTE:
+      action.postToUpdateVoteScore.voteScore = action.postToUpdateVoteScore.voteScore - 1  
+      state.postToUpdateVoteScore = action.postToUpdateVoteScore
       return {
-        [action.posts.voteScore]: action.posts.voteScore - 1,
-        ...state
+        ...state,  
       }
     default:
-      return state
+      return {
+        ...state,
+      }
   }
 }
 function category (state={}, action){

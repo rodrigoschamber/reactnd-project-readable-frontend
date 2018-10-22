@@ -40,13 +40,13 @@ class MainPostItem extends React.Component{
                                     <div className="col-25">
                                         <FaArrowDown className='react-icons' onClick={()=>
                                             this.props.dispatch(downVote({
-                                                posts: item,
+                                                postToUpdateVoteScore: item,
                                             }))
                                         }/>
                                         <b><label><small>{item.voteScore}</small></label></b>
                                         <FaArrowUp className='react-icons' onClick={()=>
                                             this.props.dispatch(upVote({
-                                                posts: item,
+                                                postToUpdateVoteScore: item,
                                             }))
                                         }/>
                                     </div>

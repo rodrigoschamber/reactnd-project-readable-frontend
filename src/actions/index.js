@@ -65,17 +65,17 @@ export function editComment ({ comments }) {
   }
 }
 
-export function upVote ({ posts }) {
+export function upVote ({ postToUpdateVoteScore }) {
   return {
     type: UP_VOTE,
-    posts,
+    postToUpdateVoteScore,
   }
 }
 
-export function downVote ({ posts }) {
+export function downVote ({ postToUpdateVoteScore }) {
   return {
     type: DOWN_VOTE,
-    posts,
+    postToUpdateVoteScore,
   }
 }
 export function loadCategory ({ category }) {
