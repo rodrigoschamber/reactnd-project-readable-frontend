@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import '../ReadableApp.js'
 import {FaArrowDown, FaArrowUp, FaCube} from 'react-icons/fa'
 import { upVote, downVote } from '../actions'
+import '../ReadableApp.js'
 //import * as FontAwesome from 'react-icons/fa'
 class MainPostItem extends React.Component{
     render(){
