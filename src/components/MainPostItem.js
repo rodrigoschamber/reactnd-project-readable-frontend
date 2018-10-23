@@ -25,7 +25,7 @@ class MainPostItem extends React.Component{
                                 <hr/>
                                 <div className="row">
                                     <div className="col-75">
-                                        <FaCube className='react-icons' onClick={null}/><b><label>{item.title}</label></b>
+                                        <p><FaCube className='react-icons' onClick={null}/><b><label>{item.title}</label></b></p>
                                     </div>
                                 </div>
                                 <div className="row">

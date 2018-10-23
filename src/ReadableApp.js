@@ -34,6 +34,15 @@ class ReadableApp extends Component {
         <Route exact path="/" render={() => (
           <MainPostItem/>
         )}/>
+        <Route path="/react" render={() => (
+          <h1>1</h1>
+        )}/>
+        <Route path="/redux" render={() => (
+          <h1>2</h1>
+        )}/>
+        <Route path="/udacity" render={() => (
+          <h1>3</h1>
+        )}/>
       </div>
     )
   }
