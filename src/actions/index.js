@@ -9,8 +9,9 @@ export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const UP_VOTE = 'UP_VOTE'
 export const DOWN_VOTE = 'DOWN_VOTE'
 export const LOAD_CATEGORY = 'LOAD_CATEGORY'
+export const SET_VIEW = 'SET_VIEW'
 
-export function loadPosts({posts}){
+export function loadPost({posts}){
   return {
     type: LOAD_POST,
     posts,
@@ -81,6 +82,12 @@ export function downVote ({ postToUpdateVoteScore }) {
 export function loadCategory ({ category }) {
   return {
     type: LOAD_CATEGORY,
+    category,
+  }
+}
+export function setView ({ category }) {
+  return {
+    type: SET_VIEW,
     category,
   }
 }

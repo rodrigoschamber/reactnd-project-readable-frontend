@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
+import { setView } from '../actions'
 import '../ReadableApp.js'
 
 class CategoriesBar extends React.Component{
@@ -10,11 +11,28 @@ class CategoriesBar extends React.Component{
             if (this.props.category.length > 0){
                 return(
                     <div>
-                        <Link to="/" className="link-top">
+                        <Link
+                            to="/"
+                            className="link-top"
+                            onClick={() => this.props.dispatch(
+                                setView({
+                                    category: "all",
+                                })
+                            )}
+                        >
                             <label className="link-to-cat">| all |</label>
                         </Link>
                         {categoriesToMap.map((item)=>(
-                            <Link  key={item.name} to={item.path} className="link-top">
+                            <Link
+                                key={item.name}
+                                to={item.path}
+                                className="link-top"
+                                onClick={() => this.props.dispatch(
+                                    setView({
+                                        category: item.path,
+                                    })
+                                )}
+                            >
                                 <label className="link-to-cat">| {item.name} |</label>
                             </Link>
                         ))}

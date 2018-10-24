@@ -7,20 +7,35 @@ import '../ReadableApp.js'
 class MainPostItem extends React.Component{
     render(){
         let showingPosts = this.props.post
+        let currentView = this.props.view
         function milisecToString(toString){
             const converted = new Date(toString)
             return JSON.stringify(converted)
         }
-        function sortByTimestamp(toSort){
-            let sortedPosts = toSort.sort((a,b)=>{return b.timestamp - a.timestamp})
+        function sortByVoteScore(toSort){
+            let sortedPosts = toSort.sort((a,b)=>{return b.voteScore - a.voteScore})
             return sortedPosts
+        }
+        function filterByCategory(toFilter, getView){
+            if (getView!=="all"){
+                let filteredPosts = toFilter.filter((item)=>{
+                    return item.category===getView
+                })
+                return filteredPosts
+            }
+            else {
+                let filteredPosts = toFilter.filter((item)=>{
+                    return item.category!==""
+                })
+                return filteredPosts
+            }
         }
         try{
             if (this.props.post.length > 0){
                 return(
                     <div className="container">
-                        <small>All posts are sorted by timestamp.</small>
-                        {sortByTimestamp(showingPosts) && showingPosts.map((item)=>(
+                        <small>All posts are sorted by vote score.</small>
+                        {sortByVoteScore(filterByCategory(showingPosts, currentView)).map((item)=>(
                             <form key={item.id}>
                                 <hr/>
                                 <div className="row">
@@ -54,7 +69,7 @@ class MainPostItem extends React.Component{
                                 <hr/>
                             </form>
                         ))}
-                        <small>*Click in the post's title for detailed information.</small>
+                        <small>Click in the post's title for detailed information.</small>
                     </div>
                 )
             }
