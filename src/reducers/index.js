@@ -49,21 +49,13 @@ function vote (state={}, action){
       action.postToUpdateVoteScore.voteScore = action.postToUpdateVoteScore.voteScore + 1  
       state.postToUpdateVoteScore = action.postToUpdateVoteScore
       return {
-        ...state,/*
-        postToUpdateVoteScore: {
-          ...state.postToUpdateVoteScore,
-          voteScore: state.postToUpdateVoteScore.voteScore + 1
-        }*/
+        ...state,
       }
     case DOWN_VOTE:
       action.postToUpdateVoteScore.voteScore = action.postToUpdateVoteScore.voteScore - 1  
       state.postToUpdateVoteScore = action.postToUpdateVoteScore
       return {
-        ...state,/*
-        postToUpdateVoteScore: {
-          ...state.postToUpdateVoteScore,
-          voteScore: state.postToUpdateVoteScore.voteScore - 1
-        }*/  
+        ...state,  
       }
     default:
       return {

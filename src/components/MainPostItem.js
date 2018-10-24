@@ -4,7 +4,6 @@ import {FaArrowDown, FaArrowUp, FaCube} from 'react-icons/fa'
 import { upVote, downVote } from '../actions'
 import '../ReadableApp.js'
 //import * as FontAwesome from 'react-icons/fa'
-
 class MainPostItem extends React.Component{
     render(){
         let showingPosts = this.props.post
