@@ -45,6 +45,12 @@ class ReadableApp extends Component {
           <Route path="/udacity" render={() => (
             <MainPostItem/>
           )}/>
+          {/*this.props.category.length > 0
+            ? this.props.category.map((item)=>(
+              <Route path={item.path} render={() => (<MainPostItem/>)}/>
+            ))
+            : null
+          */}
         </div>
       </Router>
     )

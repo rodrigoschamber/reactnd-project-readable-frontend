@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-
 import {
   LOAD_POST,
   ADD_POST,
@@ -17,6 +16,20 @@ import {
 
 function post (state={}, action){
   switch (action.type){
+    case UP_VOTE:
+      return state.map((postItem) => 
+        postItem.id===action.postToUpdateVoteScore.id
+        ?{...action.postToUpdateVoteScore,
+          voteScore: action.postToUpdateVoteScore.voteScore + 1,
+        }
+        :postItem)
+    case DOWN_VOTE:
+      return state.map((postItem) => 
+        postItem.id===action.postToUpdateVoteScore.id
+        ?{...action.postToUpdateVoteScore,
+          voteScore: action.postToUpdateVoteScore.voteScore - 1,
+        }
+        :postItem)
     case LOAD_POST:
       return action.posts
     case ADD_POST:
@@ -25,12 +38,6 @@ function post (state={}, action){
       return null
     case EDIT_POST:
       return null
-    default:
-      return state
-  }
-}
-function comment (state={}, action){
-  switch (action.type){
     case LOAD_COMMENT:
       return null
     case ADD_COMMENT:
@@ -39,28 +46,8 @@ function comment (state={}, action){
       return null
     case EDIT_COMMENT:
       return null
-    default:
+      default:
       return state
-  }
-}
-function vote (state={}, action){
-  switch (action.type){
-    case UP_VOTE:
-      action.postToUpdateVoteScore.voteScore = action.postToUpdateVoteScore.voteScore + 1  
-      state.postToUpdateVoteScore = action.postToUpdateVoteScore
-      return {
-        ...state,
-      }
-    case DOWN_VOTE:
-      action.postToUpdateVoteScore.voteScore = action.postToUpdateVoteScore.voteScore - 1  
-      state.postToUpdateVoteScore = action.postToUpdateVoteScore
-      return {
-        ...state,  
-      }
-    default:
-      return {
-        ...state,
-      }
   }
 }
 function category (state={}, action){
@@ -79,4 +66,4 @@ function view (state={}, action){
       return state
   }
 }
-export default combineReducers({post, comment, vote, category, view})
+export default combineReducers({post, category, view})
