@@ -39,7 +39,12 @@ function post (state={}, action){
     case EDIT_POST:
       return null
     case LOAD_COMMENT:
-      return null
+      return state.map((postItem) => 
+        (postItem.id===action.parentId)
+        ?{...postItem,
+          comments: action.comments,
+        }
+        :postItem)
     case ADD_COMMENT:
       return null
     case REMOVE_COMMENT:

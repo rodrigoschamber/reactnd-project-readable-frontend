@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {Route, BrowserRouter as Router} from 'react-router-dom'
-import { loadPost, loadCategory, setView } from './actions'
+import { loadPost, loadCategory, loadComment, setView } from './actions'
 import CategoriesBar from './components/CategoriesBar'
 import MainPostItem from './components/MainPostItem'
 import * as ReadableAPI from './utils/ReadableAPI'
@@ -20,6 +20,18 @@ class ReadableApp extends Component {
         this.props.dispatch(loadPost({
           posts: postsToLoad,
         }))
+        if(postsToLoad.length > 0){
+          postsToLoad.map((item)=>(
+            (item.commentCount > 0)
+            ?ReadableAPI.getCommentsById(item.id).then((commentsToLoad) => {
+              this.props.dispatch(loadComment({
+                comments: commentsToLoad,
+                parentId: item.id,
+              }))
+            })
+            : null   
+          ))
+        }
       })
       this.props.dispatch(setView({category:"all"}))
     }

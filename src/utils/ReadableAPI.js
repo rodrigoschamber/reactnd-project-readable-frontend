@@ -23,6 +23,9 @@ if (!token)
     fetch(`${api}/posts`, { headers })
       .then(res => res.json()) 
 
+  export const getCommentsById = (id) =>
+    fetch(`${api}/posts/${id}/comments`, { headers })
+      .then(res => res.json())    
 /*
 
 export const update = (book, shelf) =>

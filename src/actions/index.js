@@ -38,10 +38,11 @@ export function editPost ({ posts }) {
   }
 }
 
-export function loadComment({comments}){
+export function loadComment({comments, parentId}){
   return {
     type: LOAD_COMMENT,
     comments,
+    parentId,
   }
 }
 
