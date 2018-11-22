@@ -1,19 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom'
 import {FaArrowDown, FaArrowUp, FaCube} from 'react-icons/fa'
 import { upVote, downVote } from '../actions'
 import '../ReadableApp.js'
 //import * as FontAwesome from 'react-icons/fa'
 
 class MainPostItem extends React.Component{
-    static propTypes = {
-        setPath: PropTypes.string.isRequired, 
-    }
     render(){
         let showingPosts = this.props.post
-        let currentView = this.props.setPath
+        let currentView = this.props.view
         function milisecToString(toString){
             const converted = new Date(toString)
             return JSON.stringify(converted)
@@ -56,9 +51,7 @@ class MainPostItem extends React.Component{
                                 </div>
                                 <div className="row">
                                     <div className="col-25">
-                                    <Link to="/post" className="link-top">
-                                        <label className="link-to-cat"><b>{item.commentCount}</b> comment(s).</label>
-                                    </Link>
+                                        <label><b>{item.commentCount}</b> comment(s).</label>
                                     </div>
                                     <div className="col-25">
                                         <FaArrowDown className='react-icons' onClick={()=>

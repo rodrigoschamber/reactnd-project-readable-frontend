@@ -51,7 +51,7 @@ function post (state={}, action){
       return null
     case EDIT_COMMENT:
       return null
-      default:
+    default:
       return state
   }
 }

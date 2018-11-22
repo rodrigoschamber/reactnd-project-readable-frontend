@@ -11,17 +11,6 @@ class CategoriesBar extends React.Component{
             if (this.props.category.length > 0){
                 return(
                     <div>
-                        <Link
-                            to="/"
-                            className="link-top"
-                            onClick={() => this.props.dispatch(
-                                setView({
-                                    category: "all",
-                                })
-                            )}
-                        >
-                            <label className="link-to-cat">| all |</label>
-                        </Link>
                         {categoriesToMap.map((item)=>(
                             <Link
                                 key={item.name}
