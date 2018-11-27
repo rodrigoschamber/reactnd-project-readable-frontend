@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
-import {FaArrowDown, FaArrowUp, FaCube} from 'react-icons/fa'
+import {FaArrowDown, FaArrowUp} from 'react-icons/fa'
 import { upVote, downVote } from '../actions'
 import '../ReadableApp.js'
 //import * as FontAwesome from 'react-icons/fa'
@@ -46,7 +46,9 @@ class MainPostItem extends React.Component{
                                 <hr/>
                                 <div className="row">
                                     <div className="col-75">
-                                        <p><FaCube className='react-icons' onClick={null}/><b><label>{item.title}</label></b></p>
+                                        <Link to={`/${item.category}/${item.id}`} className="link-top">
+                                            <b><label className='link-to-cat'>{item.title}</label></b>
+                                        </Link>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -56,9 +58,7 @@ class MainPostItem extends React.Component{
                                 </div>
                                 <div className="row">
                                     <div className="col-25">
-                                    <Link to="/post" className="link-top">
-                                        <label className="link-to-cat"><b>{item.commentCount}</b> comment(s).</label>
-                                    </Link>
+                                        <label><b>{item.commentCount}</b> comment(s).</label>
                                     </div>
                                     <div className="col-25">
                                         <FaArrowDown className='react-icons' onClick={()=>

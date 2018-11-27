@@ -10,6 +10,8 @@ import {
   EDIT_COMMENT,
   UP_VOTE,
   DOWN_VOTE,
+  UP_VOTE_FOR_COMMENTS,
+  DOWN_VOTE_FOR_COMMENTS,
   LOAD_CATEGORY,
   SET_VIEW,
 } from '../actions'
@@ -30,6 +32,32 @@ function post (state={}, action){
           voteScore: action.postToUpdateVoteScore.voteScore - 1,
         }
         :postItem)
+    case UP_VOTE_FOR_COMMENTS:
+      return state.map((postItem) => 
+        (postItem.id===action.commentToUpdateVoteScore.parentId)
+        ? {...postItem,
+          comments: postItem.comments.map((commentItem)=>(
+            (commentItem.id===action.commentToUpdateVoteScore.id)
+            ? {...commentItem,
+              voteScore: commentItem.voteScore + 1
+            }
+            : commentItem  
+          ))
+        }        
+        : postItem)
+    case DOWN_VOTE_FOR_COMMENTS:
+      return state.map((postItem) => 
+      (postItem.id===action.commentToUpdateVoteScore.parentId)
+      ? {...postItem,
+        comments: postItem.comments.map((commentItem)=>(
+          (commentItem.id===action.commentToUpdateVoteScore.id)
+          ? {...commentItem,
+            voteScore: commentItem.voteScore - 1
+          }
+          : commentItem  
+        ))
+      }        
+      : postItem)
     case LOAD_POST:
       return action.posts
     case ADD_POST:

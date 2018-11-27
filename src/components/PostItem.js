@@ -1,14 +1,19 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import {FaArrowDown, FaArrowUp, FaCube} from 'react-icons/fa'
-import { upVote, downVote } from '../actions'
+import {FaArrowDown, FaArrowUp} from 'react-icons/fa'
+import { upVote, upVoteForComments, downVote, downVoteForComments } from '../actions'
 import '../ReadableApp.js'
 //import * as FontAwesome from 'react-icons/fa'
 
-class MainPostItem extends React.Component{
+class PostItem extends React.Component{
+    static propTypes = {
+        setId: PropTypes.string.isRequired,
+        setCategory: PropTypes.string.isRequired,  
+    }
     render(){
-        let showingPosts = this.props.post
-        let currentView = this.props.view
+        let showingPosts = this.props.post.filter((item)=>(item.id===this.props.setId))
+        let currentView = this.props.setCategory
         function milisecToString(toString){
             const converted = new Date(toString)
             return JSON.stringify(converted)
@@ -41,7 +46,12 @@ class MainPostItem extends React.Component{
                                 <hr/>
                                 <div className="row">
                                     <div className="col-75">
-                                        <p><FaCube className='react-icons' onClick={null}/><b><label>{item.title}</label></b></p>
+                                        <b><label>{item.title}</label></b>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-75">
+                                        <p><label>{item.body}</label></p>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -68,8 +78,37 @@ class MainPostItem extends React.Component{
                                     </div>
                                 </div>
                                 <hr/>
+                                {(item.comments)
+                                    ? item.comments.map((childItem)=>(
+                                        <div key={childItem.id} className="row">
+                                            <label>{childItem.body}</label>
+                                            <div className="row">
+                                                <div className="col-75">
+                                                    <small><i><label>Written by <u>{childItem.author}</u> at {milisecToString(childItem.timestamp)}</label></i></small>
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col-25">
+                                                    <FaArrowDown className='react-icons' onClick={()=>
+                                                        this.props.dispatch(downVoteForComments({
+                                                            commentToUpdateVoteScore: childItem,
+                                                        }))
+                                                    }/>
+                                                    <b><label><small>{childItem.voteScore}</small></label></b>
+                                                    <FaArrowUp className='react-icons' onClick={()=>
+                                                        this.props.dispatch(upVoteForComments({
+                                                            commentToUpdateVoteScore: childItem,
+                                                        }))
+                                                    }/>
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                        </div>
+                                    ))
+                                    : null
+                                }
                             </form>
-                        ))}
+                        ))}                        
                         <small>Click in the post's title for detailed information.</small>
                     </div>
                 )
@@ -83,4 +122,4 @@ function mapStateToProps(toProps){
     return toProps
 }
 
-export default connect(mapStateToProps)(MainPostItem);
+export default connect(mapStateToProps)(PostItem);

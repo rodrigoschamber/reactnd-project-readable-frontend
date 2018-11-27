@@ -8,6 +8,8 @@ export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const UP_VOTE = 'UP_VOTE'
 export const DOWN_VOTE = 'DOWN_VOTE'
+export const UP_VOTE_FOR_COMMENTS = 'UP_VOTE_FOR_COMMENTS'
+export const DOWN_VOTE_FOR_COMMENTS = 'DOWN_VOTE_FOR_COMMENTS'
 export const LOAD_CATEGORY = 'LOAD_CATEGORY'
 export const SET_VIEW = 'SET_VIEW'
 
@@ -80,6 +82,21 @@ export function downVote ({ postToUpdateVoteScore }) {
     postToUpdateVoteScore,
   }
 }
+
+export function upVoteForComments ({ commentToUpdateVoteScore }) {
+  return {
+    type: UP_VOTE_FOR_COMMENTS,
+    commentToUpdateVoteScore,
+  }
+}
+
+export function downVoteForComments ({ commentToUpdateVoteScore }) {
+  return {
+    type: DOWN_VOTE_FOR_COMMENTS,
+    commentToUpdateVoteScore,
+  }
+}
+
 export function loadCategory ({ category }) {
   return {
     type: LOAD_CATEGORY,

@@ -49,13 +49,21 @@ class ReadableApp extends Component {
           <Route exact path="/" render={() => (
             <MainPostItem setPath="all"/>
           )}/>
-          {this.props.category.length > 0
-            ? this.props.category.map((item)=>(
-              <Route path={`/${item.path}`} render={() => (
+          {(this.props.category.length > 0)
+            ? this.props.category.map((item) => (
+              <Route key={item.name} exact path={`/${item.path}`} render={() => (
                 <MainPostItem setPath={item.path}/>
               )}/>
             ))
             : null
+          }
+          {(this.props.post.length > 0)
+          ? this.props.post.map((item) => ( 
+            <Route key={`/${item.category}/${item.id}`} exact path={`/${item.category}/${item.id}`} render={() => (
+              <PostItem setId={item.id} setCategory={item.category}/>
+            )}/>
+          ))
+          : null
           }
         </div>
       </Router>
