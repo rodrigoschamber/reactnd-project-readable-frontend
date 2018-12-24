@@ -24,14 +24,16 @@ function post (state={}, action){
         ?{...action.postToUpdateVoteScore,
           voteScore: action.postToUpdateVoteScore.voteScore + 1,
         }
-        :postItem)
+        :postItem
+      )
     case DOWN_VOTE:
       return state.map((postItem) => 
         postItem.id===action.postToUpdateVoteScore.id
         ?{...action.postToUpdateVoteScore,
           voteScore: action.postToUpdateVoteScore.voteScore - 1,
         }
-        :postItem)
+        :postItem
+      )
     case UP_VOTE_FOR_COMMENTS:
       return state.map((postItem) => 
         (postItem.id===action.commentToUpdateVoteScore.parentId)
@@ -44,7 +46,8 @@ function post (state={}, action){
             : commentItem  
           ))
         }        
-        : postItem)
+        : postItem
+      )
     case DOWN_VOTE_FOR_COMMENTS:
       return state.map((postItem) => 
       (postItem.id===action.commentToUpdateVoteScore.parentId)
@@ -57,7 +60,8 @@ function post (state={}, action){
           : commentItem  
         ))
       }        
-      : postItem)
+      : postItem
+    )
     case LOAD_POST:
       return action.posts
     case ADD_POST:

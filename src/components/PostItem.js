@@ -79,7 +79,7 @@ class PostItem extends React.Component{
                                 </div>
                                 <hr/>
                                 {(item.comments)
-                                    ? item.comments.map((childItem)=>(
+                                    ? sortByVoteScore(item.comments).map((childItem)=>(
                                         <div key={childItem.id} className="row">
                                             <label>{childItem.body}</label>
                                             <div className="row">
