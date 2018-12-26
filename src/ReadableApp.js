@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {Route, BrowserRouter as Router} from 'react-router-dom'
-import { loadPost, loadCategory, loadComment, setView } from './actions'
+import { loadPost, loadCategory, loadComment } from './actions'
 import CategoriesBar from './components/CategoriesBar'
 import MainPostItem from './components/MainPostItem'
 import PostItem from './components/PostItem'
@@ -34,7 +34,6 @@ class ReadableApp extends Component {
           ))
         }
       })
-      this.props.dispatch(setView({category:"all"}))
     }
     catch(error){
       console.log(error)

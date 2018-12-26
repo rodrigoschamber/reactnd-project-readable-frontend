@@ -13,7 +13,6 @@ import {
   UP_VOTE_FOR_COMMENTS,
   DOWN_VOTE_FOR_COMMENTS,
   LOAD_CATEGORY,
-  SET_VIEW,
 } from '../actions'
 
 function post (state={}, action){
@@ -102,12 +101,5 @@ function category (state={}, action){
       return state
   }
 }
-function view (state={}, action){
-  switch (action.type){
-    case SET_VIEW:
-      return action.category
-    default:
-      return state
-  }
-}
-export default combineReducers({post, category, view})
+
+export default combineReducers({post, category})
