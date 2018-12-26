@@ -90,7 +90,14 @@ function post (state={}, action){
 function category (state={}, action){
   switch (action.type){
     case LOAD_CATEGORY:
-      return action.category.categories
+      return action.category.categories.push({name:"all", path:""}) && 
+      action.category.categories.map((categoryItem) =>
+        (categoryItem !=="")
+        ? {
+          ...categoryItem,
+        }
+        : null
+      )  
     default:
       return state
   }
