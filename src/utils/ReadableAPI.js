@@ -8,7 +8,6 @@ if (!token)
     Authorization: token,
     "Content-Type": "application/json"
   }
-  
   const category = 'react'
   
   export const getAllCategories = () =>
@@ -25,26 +24,40 @@ if (!token)
 
   export const getCommentsById = (id) =>
     fetch(`${api}/posts/${id}/comments`, { headers })
-      .then(res => res.json())    
-/*
+      .then(res => res.json())
+  
+  export const postUpVoteScore = (id) =>
+    fetch(`${api}/posts/${id}`, {
+      method:'post',
+      headers,
+      body:JSON.stringify({
+        option: 'upVote'
+      })
+    })
+  
+  export const postDownVoteScore = (id) =>
+    fetch(`${api}/posts/${id}`, {
+      method:'post',
+      headers,
+      body:JSON.stringify({
+        option: 'downVote'
+      })
+    })
 
-export const update = (book, shelf) =>
-  fetch(`${api}/books/${book.id}`, {
-    method: 'PUT',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ shelf })
-  }).then(res => res.json())
-
-export const search = (query) =>
-  fetch(`${api}/search`, {
-    method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ query })
-  }).then(res => res.json())
-    .then(data => data.books)*/
+  export const postUpVoteScoreForComments = (id) =>
+    fetch(`${api}/comments/${id}`, {
+      method:'post',
+      headers,
+      body:JSON.stringify({
+        option: 'upVote'
+      })
+    })
+  
+  export const postDownVoteScoreForComments = (id) =>
+    fetch(`${api}/comments/${id}`, {
+      method:'post',
+      headers,
+      body:JSON.stringify({
+        option: 'downVote'
+      })
+    })
