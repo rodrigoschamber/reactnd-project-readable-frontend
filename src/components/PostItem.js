@@ -1,10 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import {FaArrowDown, FaArrowUp} from 'react-icons/fa'
-import { upVote, upVoteForComments, downVote, downVoteForComments } from '../actions'
+import {FaArrowDown, FaArrowUp, FaEdit, FaEraser, FaPlus} from 'react-icons/fa'
+import {
+    upVote,
+    upVoteForComments,
+    downVote,
+    downVoteForComments,
+    removePost,
+    removeComment
+} from '../actions'
 import '../ReadableApp.js'
-//import * as FontAwesome from 'react-icons/fa'
 
 class PostItem extends React.Component{
     static propTypes = {
@@ -60,7 +66,7 @@ class PostItem extends React.Component{
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-25">
+                                    <div className="col-75">
                                         <label><b>{item.commentCount}</b> comment(s).</label>
                                     </div>
                                     <div className="col-25">
@@ -73,6 +79,13 @@ class PostItem extends React.Component{
                                         <FaArrowUp className='react-icons' onClick={()=>
                                             this.props.dispatch(upVote({
                                                 postToUpdateVoteScore: item,
+                                            }))
+                                        }/>
+                                        <FaPlus className='react-icons'/>
+                                        <FaEdit className='react-icons'/>
+                                        <FaEraser className='react-icons' onClick={()=>
+                                            this.props.dispatch(removePost({
+                                                postToRemove: item,
                                             }))
                                         }/>
                                     </div>
@@ -100,6 +113,11 @@ class PostItem extends React.Component{
                                                             commentToUpdateVoteScore: childItem,
                                                         }))
                                                     }/>
+                                                    <FaEdit className='react-icons'/>
+                                                    <FaEraser className='react-icons' onClick={()=>
+                                                        this.props.dispatch(removeComment({
+                                                            commentToRemove: childItem,
+                                                    }))}/>
                                                 </div>
                                             </div>
                                             <hr/>
@@ -109,7 +127,6 @@ class PostItem extends React.Component{
                                 }
                             </form>
                         ))}                        
-                        <small>Click in the post's title for detailed information.</small>
                     </div>
                 )
             }

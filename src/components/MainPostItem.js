@@ -2,10 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
-import {FaArrowDown, FaArrowUp} from 'react-icons/fa'
-import { upVote, downVote } from '../actions'
+import {FaArrowDown, FaArrowUp, FaEdit, FaEraser, FaPlus} from 'react-icons/fa'
+import { upVote, downVote, removePost } from '../actions'
 import '../ReadableApp.js'
-//import * as FontAwesome from 'react-icons/fa'
 
 class MainPostItem extends React.Component{
     static propTypes = {
@@ -23,7 +22,7 @@ class MainPostItem extends React.Component{
             return sortedPosts
         }
         function filterByCategory(toFilter, getView){
-            if (getView!=="all"){
+            if (getView!==""){
                 let filteredPosts = toFilter.filter((item)=>{
                     return item.category===getView
                 })
@@ -57,7 +56,7 @@ class MainPostItem extends React.Component{
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-25">
+                                    <div className="col-75">
                                         <label><b>{item.commentCount}</b> comment(s).</label>
                                     </div>
                                     <div className="col-25">
@@ -70,6 +69,13 @@ class MainPostItem extends React.Component{
                                         <FaArrowUp className='react-icons' onClick={()=>
                                             this.props.dispatch(upVote({
                                                 postToUpdateVoteScore: item,
+                                            }))
+                                        }/>
+                                        <FaPlus className='react-icons'/>
+                                        <FaEdit className='react-icons'/>
+                                        <FaEraser className='react-icons' onClick={()=>
+                                            this.props.dispatch(removePost({
+                                                postToRemove: item,
                                             }))
                                         }/>
                                     </div>

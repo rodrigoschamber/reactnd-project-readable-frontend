@@ -45,9 +45,6 @@ class ReadableApp extends Component {
         <div className="ReadableApp">
           <h2>Readable App</h2> 
           <CategoriesBar/>
-          <Route exact path="/" render={() => (
-            <MainPostItem setPath="all"/>
-          )}/>
           {(this.props.category.length > 0)
             ? this.props.category.map((item) => (
               <Route key={item.name} exact path={`/${item.path}`} render={() => (

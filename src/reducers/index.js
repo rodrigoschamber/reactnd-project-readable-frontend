@@ -66,7 +66,12 @@ function post (state={}, action){
     case ADD_POST:
       return null
     case REMOVE_POST:
-      return null
+      return state.map((postItem) =>
+      (postItem.id===action.postToRemove.id)
+      ? {...postItem,
+        deleted: true,
+        }
+        : postItem)
     case EDIT_POST:
       return null
     case LOAD_COMMENT:
@@ -79,7 +84,19 @@ function post (state={}, action){
     case ADD_COMMENT:
       return null
     case REMOVE_COMMENT:
-      return null
+      return state.map((postItem) =>
+      (postItem.id===action.commentToRemove.parentId)
+      ? {...postItem,
+        comments: postItem.comments.map((commentItem)=>(
+          (commentItem.id===action.commentToRemove.id)
+          ? {...commentItem,
+            deleted: true
+          }
+          : commentItem
+        ))
+        }
+        : postItem
+      ) 
     case EDIT_COMMENT:
       return null
     default:

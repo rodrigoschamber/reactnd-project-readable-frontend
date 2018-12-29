@@ -25,10 +25,10 @@ export function addPost ({ posts }) {
   }
 }
 
-export function removePost ({ posts }) {
+export function removePost ({ postToRemove }) {
   return {
     type: REMOVE_POST,
-    posts,
+    postToRemove,
   }
 }
 
@@ -54,10 +54,10 @@ export function addComment ({ comments }) {
   }
 }
 
-export function removeComment ({ comments }) {
+export function removeComment ({ commentToRemove }) {
   return {
     type: REMOVE_COMMENT,
-    comments,
+    commentToRemove,
   }
 }
 

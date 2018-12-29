@@ -61,3 +61,15 @@ if (!token)
         option: 'downVote'
       })
     })
+  
+  export const deletePost = (id) =>
+    fetch(`${api}/posts/${id}`, {
+      method:'delete',
+      headers,
+    })
+  
+  export const deleteComment = (id) =>
+    fetch(`${api}/comments/${id}`, {
+      method:'delete',
+      headers,
+    })

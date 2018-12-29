@@ -5,7 +5,14 @@ import { Provider } from 'react-redux'
 import ReadableApp from './ReadableApp';
 import reducer from './reducers'
 import registerServiceWorker from './registerServiceWorker';
-import { UP_VOTE, DOWN_VOTE, UP_VOTE_FOR_COMMENTS, DOWN_VOTE_FOR_COMMENTS } from './actions';
+import {
+  UP_VOTE,
+  DOWN_VOTE,
+  UP_VOTE_FOR_COMMENTS,
+  DOWN_VOTE_FOR_COMMENTS,
+  REMOVE_POST,
+  REMOVE_COMMENT,
+} from './actions';
 import * as ReadableAPI from './utils/ReadableAPI'
 
 const updateServer = store => next => action => {
@@ -38,6 +45,22 @@ const updateServer = store => next => action => {
     case DOWN_VOTE_FOR_COMMENTS:
       try{
         ReadableAPI.postDownVoteScoreForComments(action.commentToUpdateVoteScore.id)
+      }
+      catch(error){
+        console.log(error, store.getState())
+      }
+    break
+    case REMOVE_POST:
+      try{
+        ReadableAPI.deletePost(action.postToRemove.id)
+      }
+      catch(error){
+        console.log(error, store.getState())
+      }
+    break
+    case REMOVE_COMMENT:
+      try{
+        ReadableAPI.deleteComment(action.commentToRemove.id)
       }
       catch(error){
         console.log(error, store.getState())
