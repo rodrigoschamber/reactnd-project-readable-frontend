@@ -4,10 +4,10 @@ import {Route, BrowserRouter as Router} from 'react-router-dom'
 import { loadPost, loadCategory, loadComment } from './actions'
 import CategoriesBar from './components/CategoriesBar'
 import MainPostItem from './components/MainPostItem'
+import MainPostForm from './components/MainPostForm'
 import PostItem from './components/PostItem'
 import * as ReadableAPI from './utils/ReadableAPI'
 import './App.css';
-//import MainPostForm from './components/MainPostForm'
 
 class ReadableApp extends Component {
   componentDidMount() {
@@ -45,6 +45,9 @@ class ReadableApp extends Component {
         <div className="ReadableApp">
           <h2>Readable App</h2> 
           <CategoriesBar/>
+          <Route exact path={`/new`} render={() => (
+                <div><MainPostForm/></div>
+          )}/>
           {(this.props.category.length > 0)
             ? this.props.category.map((item) => (
               <Route key={item.name} exact path={`/${item.path}`} render={() => (

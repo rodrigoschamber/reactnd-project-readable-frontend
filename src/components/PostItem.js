@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom'
 import {FaArrowDown, FaArrowUp, FaEdit, FaEraser, FaPlus} from 'react-icons/fa'
 import {
     upVote,
@@ -46,7 +47,12 @@ class PostItem extends React.Component{
             if (this.props.post.length > 0){
                 return(
                     <div className="container">
-                        <small>All posts are sorted by vote score.</small>
+                        <div className="tooltip">
+                            <span className="tooltiptext">New post.</span>
+                            <Link to={`/new`} className="link-top">
+                                <FaPlus className='react-icons'/>
+                            </Link>
+                        </div>
                         {sortByVoteScore(filterByCategory(showingPosts, currentView)).map((item)=>(
                             <form key={item.id}>
                                 <hr/>
@@ -70,24 +76,35 @@ class PostItem extends React.Component{
                                         <label><b>{item.commentCount}</b> comment(s).</label>
                                     </div>
                                     <div className="col-25">
-                                        <FaArrowDown className='react-icons' onClick={()=>
-                                            this.props.dispatch(downVote({
-                                                postToUpdateVoteScore: item,
-                                            }))
-                                        }/>
+                                        <div className="tooltip">
+                                            <span className="tooltiptext">Vote down.</span>
+                                            <FaArrowDown className='react-icons' onClick={()=>
+                                                this.props.dispatch(downVote({
+                                                    postToUpdateVoteScore: item,
+                                                }))
+                                            }/>
+                                        </div>
                                         <b><label><small>{item.voteScore}</small></label></b>
-                                        <FaArrowUp className='react-icons' onClick={()=>
-                                            this.props.dispatch(upVote({
-                                                postToUpdateVoteScore: item,
-                                            }))
-                                        }/>
-                                        <FaPlus className='react-icons'/>
-                                        <FaEdit className='react-icons'/>
-                                        <FaEraser className='react-icons' onClick={()=>
-                                            this.props.dispatch(removePost({
-                                                postToRemove: item,
-                                            }))
-                                        }/>
+                                        <div className="tooltip">
+                                            <span className="tooltiptext">Vote up.</span>
+                                            <FaArrowUp className='react-icons' onClick={()=>
+                                                this.props.dispatch(upVote({
+                                                    postToUpdateVoteScore: item,
+                                                }))
+                                            }/>
+                                        </div>
+                                        <div className="tooltip">
+                                            <span className="tooltiptext">Edit post.</span>
+                                            <FaEdit className='react-icons'/>
+                                        </div>
+                                        <div className="tooltip">
+                                            <span className="tooltiptext">Delete post.</span>
+                                            <FaEraser className='react-icons' onClick={()=>
+                                                this.props.dispatch(removePost({
+                                                    postToRemove: item,
+                                                }))
+                                            }/>
+                                        </div>
                                     </div>
                                 </div>
                                 <hr/>
@@ -102,22 +119,34 @@ class PostItem extends React.Component{
                                             </div>
                                             <div className="row">
                                                 <div className="col-25">
-                                                    <FaArrowDown className='react-icons' onClick={()=>
-                                                        this.props.dispatch(downVoteForComments({
-                                                            commentToUpdateVoteScore: childItem,
-                                                        }))
-                                                    }/>
+                                                    <div className="tooltip">
+                                                        <span className="tooltiptext">Vote down.</span>
+                                                        <FaArrowDown className='react-icons' onClick={()=>
+                                                            this.props.dispatch(downVoteForComments({
+                                                                commentToUpdateVoteScore: childItem,
+                                                            }))
+                                                        }/>
+                                                    </div>
                                                     <b><label><small>{childItem.voteScore}</small></label></b>
-                                                    <FaArrowUp className='react-icons' onClick={()=>
-                                                        this.props.dispatch(upVoteForComments({
-                                                            commentToUpdateVoteScore: childItem,
-                                                        }))
-                                                    }/>
-                                                    <FaEdit className='react-icons'/>
-                                                    <FaEraser className='react-icons' onClick={()=>
-                                                        this.props.dispatch(removeComment({
-                                                            commentToRemove: childItem,
-                                                    }))}/>
+                                                    <div className="tooltip">
+                                                        <span className="tooltiptext">Vote up.</span>
+                                                        <FaArrowUp className='react-icons' onClick={()=>
+                                                            this.props.dispatch(upVoteForComments({
+                                                                commentToUpdateVoteScore: childItem,
+                                                            }))
+                                                        }/>
+                                                    </div>
+                                                    <div className="tooltip">
+                                                        <span className="tooltiptext">Edit comment.</span>
+                                                        <FaEdit className='react-icons'/>
+                                                    </div>
+                                                    <div className="tooltip">
+                                                        <span className="tooltiptext">Delete comment.</span>
+                                                        <FaEraser className='react-icons' onClick={()=>
+                                                            this.props.dispatch(removeComment({
+                                                                commentToRemove: childItem,
+                                                        }))}/>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <hr/>

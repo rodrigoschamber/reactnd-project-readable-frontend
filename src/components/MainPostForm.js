@@ -12,7 +12,7 @@ class MainPostForm extends React.Component{
                             <label>Title</label>
                         </div>
                         <div className="col-75">
-                            <input type="text" id="fname" name="title" placeholder="Type a title"></input>
+                            <input type="text" id="title" name="title" placeholder="Type a title"></input>
                         </div>
                     </div>
                     <div className="row">
@@ -20,7 +20,7 @@ class MainPostForm extends React.Component{
                             <label>Author</label>
                         </div>
                         <div className="col-75">
-                            <input type="text" id="lname" name="name" placeholder="Type your name"></input>
+                            <input type="text" id="name" name="name" placeholder="Type your name"></input>
                         </div>
                     </div>
                     <div className="row">
@@ -28,10 +28,11 @@ class MainPostForm extends React.Component{
                             <label>Subject</label>
                         </div>
                         <div className="col-75">
-                            <textarea id="subject" name="body" placeholder="Type your post here"></textarea>
+                            <textarea id="body" name="body" placeholder="Type your post here"></textarea>
                         </div>
                     </div>
                     <div className="row">
+                        <input type="submit" value="Clear"></input>
                         <input type="submit" value="Submit"></input>
                     </div>
                 </form>
