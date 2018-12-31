@@ -32,10 +32,10 @@ export function removePost ({ postToRemove }) {
   }
 }
 
-export function editPost ({ posts }) {
+export function editPost ({ postToEdit }) {
   return {
     type: EDIT_POST,
-    posts,
+    postToEdit,
   }
 }
 
@@ -47,10 +47,10 @@ export function loadComment({comments, parentId}){
   }
 }
 
-export function addComment ({ comments }) {
+export function addComment ({ commentToAdd }) {
   return {
     type: ADD_COMMENT,
-    comments,
+    commentToAdd,
   }
 }
 
@@ -61,10 +61,10 @@ export function removeComment ({ commentToRemove }) {
   }
 }
 
-export function editComment ({ comments }) {
+export function editComment ({ commentToEdit }) {
   return {
     type: EDIT_COMMENT,
-    comments,
+    commentToEdit,
   }
 }
 

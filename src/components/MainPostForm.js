@@ -5,13 +5,15 @@ import '../ReadableApp.js'
 
 class MainPostForm extends React.Component{
     state = {
-        title: 'How to add a new post',
-        author: 'Rodrigo Schamber',
-        body: 'To add a new post just click on the submit button right down.',
+        title: "How to add a new post",
+        author: "rsscss",
+        body: "To add a new post just click on the submit button.",
+        category:""
     };
     handleChangeTitle = this.handleChangeTitle.bind(this);
     handleChangeAuthor = this.handleChangeAuthor.bind(this);
     handleChangeBody = this.handleChangeBody.bind(this);
+    handleChangeCategory = this.handleChangeCategory.bind(this);
     handleSubmit = this.handleSubmit.bind(this);
     handleChangeTitle(event) {
         this.setState({
@@ -28,6 +30,11 @@ class MainPostForm extends React.Component{
             body: event.target.value,
         });
     }
+    handleChangeCategory(event) {
+        this.setState({
+            category: event.target.value,
+        });
+    }
     handleSubmit(event) {
         let newPost = [{
             id: Math.random().toString(36).substr(-8),
@@ -35,14 +42,18 @@ class MainPostForm extends React.Component{
             title: this.state.title,
             body: this.state.body,
             author: this.state.author,
-            category: "udacity",
+            category: this.state.category,
             voteScore: 0,
             deleted: false,
             commentCount: 0,
         }]
-        this.props.dispatch(addPost({postToAdd: newPost}));
-        alert('A new post was added.');
-        event.preventDefault();
+        if (this.state.category!==""){
+            this.props.dispatch(addPost({postToAdd: newPost}));
+            alert('A new post was added successfully!');
+            event.preventDefault();
+        } else {
+            alert('Ooops! Please select a category.');
+        }
     }
     render(){    
         return(
@@ -93,8 +104,18 @@ class MainPostForm extends React.Component{
                             />
                         </div>
                     </div>
-                    <div className="row">
-                        <input type="submit" value="Submit" onClick={this.handleSubmit}/>
+                    <div className="row"> 
+                        <div className="col-25b">
+                            <select id="mySelect" onChange={this.handleChangeCategory}>
+                                <option value="">Select a category:</option>
+                                <option value="react">react</option>
+                                <option value="redux">redux</option>
+                                <option value="udacity">udacity</option>
+                            </select>
+                        </div>
+                        <div className="col-25b">
+                            <input type="submit" value="Submit" onClick={this.handleSubmit}/>
+                        </div>
                     </div>
                 </form>
             </div>      

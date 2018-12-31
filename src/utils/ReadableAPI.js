@@ -62,12 +62,60 @@ if (!token)
       })
     })
   
+  export const addPost = (postToAdd) =>
+    fetch(`${api}/posts`, {
+      method:'post',
+      headers,
+      body:JSON.stringify({
+        id: postToAdd.id,
+        timestamp: postToAdd.timestamp,
+        title: postToAdd.title,
+        body: postToAdd.body,
+        author: postToAdd.author,
+        category: postToAdd.category,
+      })
+    })
+  
+  export const editPost = (postToEdit) =>
+    fetch(`${api}/posts/${postToEdit.id}`, {
+      method:'put',
+      headers,
+      body:JSON.stringify({
+        title: postToEdit.title,
+        body: postToEdit.body,
+      })
+    })
+  
   export const deletePost = (id) =>
     fetch(`${api}/posts/${id}`, {
       method:'delete',
       headers,
     })
   
+  export const addComment = (commentToAdd) =>
+    fetch(`${api}/comments`, {
+      method:'post',
+      headers,
+      body:JSON.stringify({
+        id: commentToAdd.id,
+        timestamp: commentToAdd.timestamp,
+        title: commentToAdd.title,
+        body: commentToAdd.body,
+        author: commentToAdd.author,
+        parentId: commentToAdd.parentId,
+      })
+    })
+  
+  export const editComment = (commentToEdit) =>
+    fetch(`${api}/comments/${commentToEdit.id}`, {
+      method:'put',
+      headers,
+      body:JSON.stringify({
+        timestamp: commentToEdit.timestamp,
+        body: commentToEdit.body,
+      })
+    })
+
   export const deleteComment = (id) =>
     fetch(`${api}/comments/${id}`, {
       method:'delete',

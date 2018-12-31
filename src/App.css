@@ -36,6 +36,14 @@ input[type=submit]:hover {
   padding: 20px;
 }
 
+.col-25b {
+  float: right;
+  width: 25%;
+  margin-left: 10px;
+  margin-right: 0px;
+  margin-top: 0px;
+}
+
 .col-25 {
   float: left;
   width: 25%;

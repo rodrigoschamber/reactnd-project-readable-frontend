@@ -10,7 +10,11 @@ import {
   DOWN_VOTE,
   UP_VOTE_FOR_COMMENTS,
   DOWN_VOTE_FOR_COMMENTS,
+  ADD_POST,
+  EDIT_POST,
   REMOVE_POST,
+  ADD_COMMENT,
+  EDIT_COMMENT,
   REMOVE_COMMENT,
 } from './actions';
 import * as ReadableAPI from './utils/ReadableAPI'
@@ -50,9 +54,45 @@ const updateServer = store => next => action => {
         console.log(error, store.getState())
       }
     break
+    case ADD_POST:
+      try{
+        console.log(action.postToAdd)
+        //ReadableAPI.addPost(action.postToAdd)
+      }
+      catch(error){
+        console.log(error, store.getState())
+      }
+    break
+    case EDIT_POST:
+      try{
+        console.log(action.postToEdit)
+        //ReadableAPI.editPost(action.postToEdit)
+      }
+      catch(error){
+        console.log(error, store.getState())
+      }
+    break
     case REMOVE_POST:
       try{
         ReadableAPI.deletePost(action.postToRemove.id)
+      }
+      catch(error){
+        console.log(error, store.getState())
+      }
+    break
+    case ADD_COMMENT:
+      try{
+        console.log(action.commentToAdd)
+        //ReadableAPI.addComment(action.commentToAdd)
+      }
+      catch(error){
+        console.log(error, store.getState())
+      }
+    break
+    case EDIT_COMMENT:
+      try{
+        console.log(action.commentToEdit)
+        //ReadableAPI.editComment(id, action.commentToEdit)
       }
       catch(error){
         console.log(error, store.getState())
