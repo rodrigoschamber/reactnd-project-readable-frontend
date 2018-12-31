@@ -18,10 +18,10 @@ export function loadPost({posts}){
     posts,
   }
 }
-export function addPost ({ posts }) {
+export function addPost ({ postToAdd }) {
   return {
     type: ADD_POST,
-    posts,
+    postToAdd,
   }
 }
 

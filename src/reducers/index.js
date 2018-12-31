@@ -64,7 +64,14 @@ function post (state={}, action){
     case LOAD_POST:
       return action.posts
     case ADD_POST:
-      return null
+      return action.postToAdd.push(...state)&& 
+      action.postToAdd.map((postItem) =>
+        (postItem !=="")
+        ? {
+          ...postItem,
+        }
+        : null
+      )  
     case REMOVE_POST:
       return state.map((postItem) =>
       (postItem.id===action.postToRemove.id)
@@ -73,7 +80,7 @@ function post (state={}, action){
         }
         : postItem)
     case EDIT_POST:
-      return null
+      return state
     case LOAD_COMMENT:
       return state.map((postItem) => 
         (postItem.id===action.parentId)
@@ -82,7 +89,7 @@ function post (state={}, action){
         }
         :postItem)
     case ADD_COMMENT:
-      return null
+      return state
     case REMOVE_COMMENT:
       return state.map((postItem) =>
       (postItem.id===action.commentToRemove.parentId)
@@ -98,7 +105,7 @@ function post (state={}, action){
         : postItem
       ) 
     case EDIT_COMMENT:
-      return null
+      return state
     default:
       return state
   }
