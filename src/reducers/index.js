@@ -64,14 +64,7 @@ function post (state={}, action){
     case LOAD_POST:
       return action.posts
     case ADD_POST:
-      return action.postToAdd.push(...state)&& 
-      action.postToAdd.map((postItem) =>
-        (postItem !=="")
-        ? {
-          ...postItem,
-        }
-        : null
-      )  
+      return Object.assign([...state], {[Object.keys(state).length]: action.postToAdd})
     case REMOVE_POST:
       return state.map((postItem) =>
       (postItem.id===action.postToRemove.id)

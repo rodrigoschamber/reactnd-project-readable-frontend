@@ -36,7 +36,7 @@ class MainPostForm extends React.Component{
         });
     }
     handleSubmit(event) {
-        let newPost = [{
+        let newPost = {
             id: Math.random().toString(36).substr(-8),
             timestamp: Date.now(),
             title: this.state.title,
@@ -46,7 +46,7 @@ class MainPostForm extends React.Component{
             voteScore: 0,
             deleted: false,
             commentCount: 0,
-        }]
+        }
         if (this.state.category!==""){
             this.props.dispatch(addPost({postToAdd: newPost}));
             alert('A new post was added successfully!');

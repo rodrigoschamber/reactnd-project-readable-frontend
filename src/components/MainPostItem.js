@@ -50,9 +50,12 @@ class MainPostItem extends React.Component{
                                 <hr/>
                                 <div className="row">
                                     <div className="col-75">
-                                        <Link to={`/${item.category}/${item.id}`} className="link-top">
-                                            <b><label className='link-to-cat'>{item.title}</label></b>
-                                        </Link>
+                                        <div className="tooltip">
+                                            <span className="tooltiptext">More info.</span>
+                                            <Link to={`/${item.category}/${item.id}`} className="link-top">
+                                                <b><label className='link-to-cat'>{item.title}</label></b>
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="row">

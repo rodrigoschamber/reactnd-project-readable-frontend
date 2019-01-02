@@ -56,8 +56,7 @@ const updateServer = store => next => action => {
     break
     case ADD_POST:
       try{
-        console.log(action.postToAdd)
-        //ReadableAPI.addPost(action.postToAdd)
+        ReadableAPI.addPost(action.postToAdd)
       }
       catch(error){
         console.log(error, store.getState())
