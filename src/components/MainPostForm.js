@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import {Redirect} from 'react-router-dom'
 import { addPost } from '../actions'
 import '../ReadableApp.js'
 
@@ -8,7 +9,8 @@ class MainPostForm extends React.Component{
         title: "How to add a new post",
         author: "rsscss",
         body: "To add a new post just click on the submit button.",
-        category:""
+        category:"",
+        ableToRedirect:"false"
     };
     handleChangeTitle = this.handleChangeTitle.bind(this);
     handleChangeAuthor = this.handleChangeAuthor.bind(this);
@@ -43,19 +45,24 @@ class MainPostForm extends React.Component{
             body: this.state.body,
             author: this.state.author,
             category: this.state.category,
-            voteScore: 0,
+            voteScore: 1,
             deleted: false,
             commentCount: 0,
         }
         if (this.state.category!==""){
             this.props.dispatch(addPost({postToAdd: newPost}));
-            alert('A new post was added successfully!');
             event.preventDefault();
+            this.setState({
+                ableToRedirect: true,
+            });      
         } else {
             alert('Ooops! Please select a category.');
         }
     }
-    render(){    
+    render(){
+        if (this.state.ableToRedirect===true){
+            return <Redirect key="/" to='/'/>
+        }    
         return(
             <div className="container">
                 <form id="frmAddPost">

@@ -18,7 +18,7 @@ class MainPostItem extends React.Component{
             return JSON.stringify(converted)
         }
         function sortByVoteScore(toSort){
-            let sortedPosts = toSort.sort((a,b)=>{return b.voteScore - a.voteScore})
+            let sortedPosts = toSort.sort((a,b) => {return b.voteScore - a.voteScore})
             return sortedPosts
         }
         function filterByCategory(toFilter, getView){
@@ -36,6 +36,18 @@ class MainPostItem extends React.Component{
             }
         }
         try{
+            if (this.props.post.length <= 0){
+                return (
+                    <div className="container">
+                        <div className="tooltip">
+                            <span className="tooltiptext">New post.</span>
+                            <Link to={`/new`} className="link-top">
+                                <FaPlus className='react-icons'/>
+                            </Link>
+                        </div>
+                    </div>
+                )
+            }
             if (this.props.post.length > 0){
                 return(
                     <div className="container">
@@ -45,7 +57,7 @@ class MainPostItem extends React.Component{
                                 <FaPlus className='react-icons'/>
                             </Link>
                         </div>
-                        {sortByVoteScore(filterByCategory(showingPosts, currentView)).map((item)=>(
+                        {sortByVoteScore(filterByCategory(showingPosts, currentView)).map((item) => (
                             <form key={item.id}>
                                 <hr/>
                                 <div className="row">
@@ -70,7 +82,7 @@ class MainPostItem extends React.Component{
                                     <div className="col-25">
                                         <div className="tooltip">
                                             <span className="tooltiptext">Vote down.</span>
-                                            <FaArrowDown className='react-icons' onClick={()=>
+                                            <FaArrowDown className='react-icons' onClick={() =>
                                                 this.props.dispatch(downVote({
                                                     postToUpdateVoteScore: item,
                                                 }))
@@ -79,7 +91,7 @@ class MainPostItem extends React.Component{
                                         <b><label><small>{item.voteScore}</small></label></b>
                                         <div className="tooltip">
                                             <span className="tooltiptext">Vote up.</span>
-                                            <FaArrowUp className='react-icons' onClick={()=>
+                                            <FaArrowUp className='react-icons' onClick={() =>
                                                 this.props.dispatch(upVote({
                                                     postToUpdateVoteScore: item,
                                                 }))
@@ -91,7 +103,7 @@ class MainPostItem extends React.Component{
                                         </div>
                                         <div className="tooltip">
                                             <span className="tooltiptext">Delete post.</span>
-                                            <FaEraser className='react-icons' onClick={()=>
+                                            <FaEraser className='react-icons' onClick={() =>
                                                 this.props.dispatch(removePost({
                                                     postToRemove: item,
                                                 }))

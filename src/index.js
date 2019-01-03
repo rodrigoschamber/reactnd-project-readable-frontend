@@ -24,7 +24,7 @@ const updateServer = store => next => action => {
   switch (action.type){
     case UP_VOTE:
       try{
-        ReadableAPI.postUpVoteScore(action.postToUpdateVoteScore.id)
+        ReadableAPI.postUpVoteScore(action.postToUpdateVoteScore.id).then(alert('Voted!'))
       }
       catch(error){
         console.log(error, store.getState())
@@ -32,7 +32,7 @@ const updateServer = store => next => action => {
     break
     case DOWN_VOTE:
       try{
-        ReadableAPI.postDownVoteScore(action.postToUpdateVoteScore.id)
+        ReadableAPI.postDownVoteScore(action.postToUpdateVoteScore.id).then(alert('Voted!'))
       }
       catch(error){
         console.log(error, store.getState())
@@ -40,7 +40,7 @@ const updateServer = store => next => action => {
     break
     case UP_VOTE_FOR_COMMENTS:
       try{
-        ReadableAPI.postUpVoteScoreForComments(action.commentToUpdateVoteScore.id)
+        ReadableAPI.postUpVoteScoreForComments(action.commentToUpdateVoteScore.id).then(alert('Voted!'))
       }
       catch(error){
         console.log(error, store.getState())
@@ -48,7 +48,7 @@ const updateServer = store => next => action => {
     break
     case DOWN_VOTE_FOR_COMMENTS:
       try{
-        ReadableAPI.postDownVoteScoreForComments(action.commentToUpdateVoteScore.id)
+        ReadableAPI.postDownVoteScoreForComments(action.commentToUpdateVoteScore.id).then(alert('Voted!'))
       }
       catch(error){
         console.log(error, store.getState())
@@ -56,7 +56,7 @@ const updateServer = store => next => action => {
     break
     case ADD_POST:
       try{
-        ReadableAPI.addPost(action.postToAdd)
+        ReadableAPI.addPost(action.postToAdd).then(alert('A new post was added successfully!'))
       }
       catch(error){
         console.log(error, store.getState())
@@ -73,7 +73,7 @@ const updateServer = store => next => action => {
     break
     case REMOVE_POST:
       try{
-        ReadableAPI.deletePost(action.postToRemove.id)
+        ReadableAPI.deletePost(action.postToRemove.id).then(alert('Post removed successfully!'))
       }
       catch(error){
         console.log(error, store.getState())
@@ -99,7 +99,7 @@ const updateServer = store => next => action => {
     break
     case REMOVE_COMMENT:
       try{
-        ReadableAPI.deleteComment(action.commentToRemove.id)
+        ReadableAPI.deleteComment(action.commentToRemove.id).then(alert('Comment removed successfully!'))
       }
       catch(error){
         console.log(error, store.getState())

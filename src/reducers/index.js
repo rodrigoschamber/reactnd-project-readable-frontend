@@ -66,11 +66,9 @@ function post (state={}, action){
     case ADD_POST:
       return Object.assign([...state], {[Object.keys(state).length]: action.postToAdd})
     case REMOVE_POST:
-      return state.map((postItem) =>
+      return state.filter((postItem) =>
       (postItem.id===action.postToRemove.id)
-      ? {...postItem,
-        deleted: true,
-        }
+      ? null
         : postItem)
     case EDIT_POST:
       return state
@@ -87,16 +85,15 @@ function post (state={}, action){
       return state.map((postItem) =>
       (postItem.id===action.commentToRemove.parentId)
       ? {...postItem,
-        comments: postItem.comments.map((commentItem)=>(
+        commentCount: postItem.commentCount - 1,
+        comments: postItem.comments.filter((commentItem)=>(
           (commentItem.id===action.commentToRemove.id)
-          ? {...commentItem,
-            deleted: true
-          }
+          ? null
           : commentItem
         ))
         }
         : postItem
-      ) 
+      )
     case EDIT_COMMENT:
       return state
     default:
