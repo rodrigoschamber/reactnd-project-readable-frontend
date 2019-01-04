@@ -52,7 +52,8 @@ class ReadableApp extends Component {
           )}/>
           <Route exact path={`/new_comment`} render={() => (
                 <div>
-                  <CommentForm 
+                  <CommentForm
+                    parentCategory={this.props.dashboard.parentCategory} 
                     parentDeleted = {this.props.dashboard.parentDeleted}
                     parentId={this.props.dashboard.parentId}
                   />

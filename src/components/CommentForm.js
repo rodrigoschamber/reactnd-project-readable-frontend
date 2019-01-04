@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
+import {Redirect} from 'react-router-dom'
 import { addComment } from '../actions'
 import '../ReadableApp.js'
 
@@ -8,8 +9,10 @@ class CommentForm extends React.Component{
     state = {
         author: "rsscss",
         body: "To add a new comment just click on the submit button.",
+        ableToRedirect:"false",
     };
     static propTypes = {
+        parentCategory: PropTypes.string.isRequired,
         parentId: PropTypes.string.isRequired,
         parentDeleted: PropTypes.bool.isRequired
     }
@@ -39,12 +42,21 @@ class CommentForm extends React.Component{
         }
         if (this.state.body!==""){
             this.props.dispatch(addComment({commentToAdd: newComment}));
-            event.preventDefault();      
+            event.preventDefault();
+            this.setState({
+                ableToRedirect: true,
+            });    
         } else {
             alert('Ooops! There is something missing.');
         }
     }
-    render(){    
+    render(){
+        if (this.state.ableToRedirect===true){
+            return <Redirect 
+                key={`/${this.props.parentCategory}/${this.props.parentId}`}
+                to={`/${this.props.parentCategory}/${this.props.parentId}`}
+            />
+        }    
         return(
             <div className="container">
                 <form id="frmAddComment">

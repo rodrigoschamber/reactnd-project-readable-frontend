@@ -10,7 +10,7 @@ class MainPostForm extends React.Component{
         author: "rsscss",
         body: "To add a new post just click on the submit button.",
         category:"",
-        ableToRedirect:"false"
+        ableToRedirect:"false",
     };
     handleChangeTitle = this.handleChangeTitle.bind(this);
     handleChangeAuthor = this.handleChangeAuthor.bind(this);
@@ -48,16 +48,7 @@ class MainPostForm extends React.Component{
             voteScore: 1,
             deleted: false,
             commentCount: 0,
-            comments: [{
-                id:"",
-                parentId:"",
-                timestamp:"",
-                body:"",
-                author:"",
-                voteScore: 1,
-                deleted: false,
-                parentDeleted: false,
-            }],
+            comments: [{}],
         }
         if (this.state.category!==""){
             this.props.dispatch(addPost({postToAdd: newPost}));

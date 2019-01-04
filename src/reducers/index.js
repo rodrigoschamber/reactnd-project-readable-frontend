@@ -67,16 +67,7 @@ function post (state={}, action){
         (postToLoad.id !== "")
           ? (postToLoad.commentCount===0)
             ? {...postToLoad,
-                comments:[{
-                id:"",
-                parentId:"",
-                timestamp:"",
-                body:"",
-                author:"",
-                voteScore: 1,
-                deleted: false,
-                parentDeleted: false,  
-                }]
+                comments:[{}],
             }
             : {...postToLoad}
           : null
@@ -145,7 +136,6 @@ function category (state={}, action){
       return state
   }
 }
-
 function dashboard (state={}, action){
   switch (action.type){
     case SET_DASHBOARD_TO_ADD_COMMENT:

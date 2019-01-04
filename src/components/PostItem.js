@@ -83,7 +83,10 @@ class PostItem extends React.Component{
                                                 <FaPlus
                                                     className='react-icons'
                                                     onClick={() => this.props.dispatch(setDashBoardToAddComment({
-                                                        commentToAdd: {parentDeleted: item.deleted, parentId: item.id}
+                                                        commentToAdd: {
+                                                            parentCategory: item.category,
+                                                            parentDeleted: item.deleted,
+                                                            parentId: item.id}
                                                     }))}
                                                 />
                                             </Link>
@@ -120,8 +123,8 @@ class PostItem extends React.Component{
                                     </div>
                                 </div>
                                 <hr/>
-                                {(item.commentCount > 0)
-                                    ? sortByVoteScore(item.comments).filter((childItem)=>(childItem.id!=="") ? childItem : null).map((childItem)=>(
+                                {(item.comments)
+                                    ? sortByVoteScore(item.comments).map((childItem)=>(
                                         <div key={childItem.id} className="row">
                                             <label>{childItem.body}</label>
                                             <div className="row">
