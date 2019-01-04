@@ -41,7 +41,7 @@ class MainPostItem extends React.Component{
                     <div className="container">
                         <div className="tooltip">
                             <span className="tooltiptext">New post.</span>
-                            <Link to={`/new`} className="link-top">
+                            <Link to={`/new_post`} className="link-top">
                                 <FaPlus className='react-icons'/>
                             </Link>
                         </div>
@@ -53,7 +53,7 @@ class MainPostItem extends React.Component{
                     <div className="container">
                         <div className="tooltip">
                         <span className="tooltiptext">New post.</span>
-                            <Link to={`/new`} className="link-top">
+                            <Link to={`/new_post`} className="link-top">
                                 <FaPlus className='react-icons'/>
                             </Link>
                         </div>

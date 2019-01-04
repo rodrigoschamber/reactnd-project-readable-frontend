@@ -81,8 +81,7 @@ const updateServer = store => next => action => {
     break
     case ADD_COMMENT:
       try{
-        console.log(action.commentToAdd)
-        //ReadableAPI.addComment(action.commentToAdd)
+        ReadableAPI.addComment(action.commentToAdd).then(alert('A new comment was added successfully!'))
       }
       catch(error){
         console.log(error, store.getState())

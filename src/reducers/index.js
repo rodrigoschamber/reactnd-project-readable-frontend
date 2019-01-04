@@ -13,6 +13,7 @@ import {
   UP_VOTE_FOR_COMMENTS,
   DOWN_VOTE_FOR_COMMENTS,
   LOAD_CATEGORY,
+  SET_DASHBOARD_TO_ADD_COMMENT,
 } from '../actions'
 
 function post (state={}, action){
@@ -80,7 +81,16 @@ function post (state={}, action){
         }
         :postItem)
     case ADD_COMMENT:
-      return state
+      return state.map((postItem) =>
+        (postItem.id===action.commentToAdd.parentId)
+        ? {...postItem,
+          commentCount: postItem.commentCount + 1,
+          comments: Object.assign(
+            [...postItem.comments], {[Object.keys(...postItem.comments).length]: action.commentToAdd}
+          ),
+        }
+        : postItem
+      )
     case REMOVE_COMMENT:
       return state.map((postItem) =>
       (postItem.id===action.commentToRemove.parentId)
@@ -115,5 +125,13 @@ function category (state={}, action){
       return state
   }
 }
+function dashboard (state={}, action){
+  switch (action.type){
+    case SET_DASHBOARD_TO_ADD_COMMENT:
+      return action.commentToAdd
+    default:
+      return state
+  }
+}
 
-export default combineReducers({post, category})
+export default combineReducers({post, category, dashboard})

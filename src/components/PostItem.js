@@ -9,7 +9,8 @@ import {
     downVote,
     downVoteForComments,
     removePost,
-    removeComment
+    removeComment,
+    setDashBoardToAddComment,
 } from '../actions'
 import '../ReadableApp.js'
 
@@ -49,7 +50,7 @@ class PostItem extends React.Component{
                     <div className="container">
                         <div className="tooltip">
                             <span className="tooltiptext">New post.</span>
-                            <Link to={`/new`} className="link-top">
+                            <Link to={`/new_post`} className="link-top">
                                 <FaPlus className='react-icons'/>
                             </Link>
                         </div>
@@ -76,6 +77,17 @@ class PostItem extends React.Component{
                                         <label><b>{item.commentCount}</b> comment(s).</label>
                                     </div>
                                     <div className="col-25">
+                                        <div className="tooltip">
+                                            <span className="tooltiptext">New comment.</span>
+                                            <Link to={`/new_comment`} className="link-top">
+                                                <FaPlus
+                                                    className='react-icons'
+                                                    onClick={() => this.props.dispatch(setDashBoardToAddComment({
+                                                        commentToAdd: {parentDeleted: item.deleted, parentId: item.id}
+                                                    }))}
+                                                />
+                                            </Link>
+                                        </div>
                                         <div className="tooltip">
                                             <span className="tooltiptext">Vote down.</span>
                                             <FaArrowDown className='react-icons' onClick={()=>
