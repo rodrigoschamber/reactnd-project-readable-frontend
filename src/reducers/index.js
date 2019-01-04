@@ -63,7 +63,24 @@ function post (state={}, action){
       : postItem
     )
     case LOAD_POST:
-      return action.posts
+      return action.posts.map((postToLoad) => 
+        (postToLoad.id !== "")
+          ? (postToLoad.commentCount===0)
+            ? {...postToLoad,
+                comments:[{
+                id:"",
+                parentId:"",
+                timestamp:"",
+                body:"",
+                author:"",
+                voteScore: 1,
+                deleted: false,
+                parentDeleted: false,  
+                }]
+            }
+            : {...postToLoad}
+          : null
+      )
     case ADD_POST:
       return Object.assign([...state], {[Object.keys(state).length]: action.postToAdd})
     case REMOVE_POST:
@@ -76,10 +93,13 @@ function post (state={}, action){
     case LOAD_COMMENT:
       return state.map((postItem) => 
         (postItem.id===action.parentId)
-        ?{...postItem,
-          comments: action.comments,
-        }
-        :postItem)
+          ?{...postItem,
+            comments: action.comments,
+          }
+          :{
+            ...postItem,
+          }
+        )
     case ADD_COMMENT:
       return state.map((postItem) =>
         (postItem.id===action.commentToAdd.parentId)
@@ -125,6 +145,7 @@ function category (state={}, action){
       return state
   }
 }
+
 function dashboard (state={}, action){
   switch (action.type){
     case SET_DASHBOARD_TO_ADD_COMMENT:

@@ -99,7 +99,6 @@ if (!token)
       body:JSON.stringify({
         id: commentToAdd.id,
         timestamp: commentToAdd.timestamp,
-        title: commentToAdd.title,
         body: commentToAdd.body,
         author: commentToAdd.author,
         parentId: commentToAdd.parentId,

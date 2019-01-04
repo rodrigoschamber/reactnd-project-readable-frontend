@@ -44,8 +44,7 @@ class CommentForm extends React.Component{
             alert('Ooops! There is something missing.');
         }
     }
-    render(){
-        console.log(this.props.parentId, this.props.parentDeleted)    
+    render(){    
         return(
             <div className="container">
                 <form id="frmAddComment">

@@ -28,7 +28,7 @@ class PostItem extends React.Component{
         }
         function sortByVoteScore(toSort){
             let sortedPosts = toSort.sort((a,b)=>{return b.voteScore - a.voteScore})
-            return sortedPosts
+        return sortedPosts
         }
         function filterByCategory(toFilter, getView){
             if (getView!=="all"){
@@ -120,8 +120,8 @@ class PostItem extends React.Component{
                                     </div>
                                 </div>
                                 <hr/>
-                                {(item.comments)
-                                    ? sortByVoteScore(item.comments).map((childItem)=>(
+                                {(item.commentCount > 0)
+                                    ? sortByVoteScore(item.comments).filter((childItem)=>(childItem.id!=="") ? childItem : null).map((childItem)=>(
                                         <div key={childItem.id} className="row">
                                             <label>{childItem.body}</label>
                                             <div className="row">

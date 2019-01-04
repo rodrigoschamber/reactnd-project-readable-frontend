@@ -48,6 +48,16 @@ class MainPostForm extends React.Component{
             voteScore: 1,
             deleted: false,
             commentCount: 0,
+            comments: [{
+                id:"",
+                parentId:"",
+                timestamp:"",
+                body:"",
+                author:"",
+                voteScore: 1,
+                deleted: false,
+                parentDeleted: false,
+            }],
         }
         if (this.state.category!==""){
             this.props.dispatch(addPost({postToAdd: newPost}));
