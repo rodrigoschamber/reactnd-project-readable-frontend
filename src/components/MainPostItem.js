@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
 import {FaArrowDown, FaArrowUp, FaEdit, FaEraser, FaPlus} from 'react-icons/fa'
-import { upVote, downVote, removePost } from '../actions'
+import { upVote, downVote, removePost, setDashBoardToEditPost } from '../actions'
 import '../ReadableApp.js'
 
 class MainPostItem extends React.Component{
@@ -100,7 +100,16 @@ class MainPostItem extends React.Component{
                                         <div className="tooltip">
                                             <span className="tooltiptext">Edit post.</span>
                                             <Link to={`/edit_post`} className="link-top">
-                                                <FaEdit className='react-icons'/>
+                                                <FaEdit
+                                                    className='react-icons'
+                                                    onClick={() => this.props.dispatch(setDashBoardToEditPost({
+                                                        postToEdit: {
+                                                            parentId: item.id,
+                                                            parentTitle: item.title,
+                                                            parentBody: item.body,
+                                                        }
+                                                    }))}
+                                                />
                                             </Link>
                                         </div>
                                         <div className="tooltip">

@@ -14,6 +14,8 @@ import {
   DOWN_VOTE_FOR_COMMENTS,
   LOAD_CATEGORY,
   SET_DASHBOARD_TO_ADD_COMMENT,
+  SET_DASHBOARD_TO_EDIT_POST,
+  SET_DASHBOARD_TO_EDIT_COMMENT,
 } from '../actions'
 
 function post (state={}, action){
@@ -80,7 +82,16 @@ function post (state={}, action){
       ? null
         : postItem)
     case EDIT_POST:
-      return state
+      return state.map((postItem)=>
+        (postItem.id===action.postToEdit.id)
+          ? {...postItem,
+              title: action.postToEdit.title,
+              body: action.postToEdit.body,
+            }
+          : {
+            postItem,
+          }
+      )
     case LOAD_COMMENT:
       return state.map((postItem) => 
         (postItem.id===action.parentId)
@@ -90,7 +101,7 @@ function post (state={}, action){
           :{
             ...postItem,
           }
-        )
+      )
     case ADD_COMMENT:
       return state.map((postItem) =>
         (postItem.id===action.commentToAdd.parentId)
@@ -138,8 +149,12 @@ function category (state={}, action){
 }
 function dashboard (state={}, action){
   switch (action.type){
+    case SET_DASHBOARD_TO_EDIT_POST:
+      return action.postToEdit
     case SET_DASHBOARD_TO_ADD_COMMENT:
       return action.commentToAdd
+    case SET_DASHBOARD_TO_EDIT_COMMENT:
+      return action.commentToEdit
     default:
       return state
   }

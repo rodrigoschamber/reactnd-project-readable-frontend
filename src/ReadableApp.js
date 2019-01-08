@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import {Route, BrowserRouter as Router} from 'react-router-dom'
 import { loadPost, loadCategory, loadComment } from './actions'
 import CategoriesBar from './components/CategoriesBar'
+import CommentForm from './components/CommentForm'
+import EditComment from './components/EditComment'
+import EditPost from './components/EditPost'
 import MainPostItem from './components/MainPostItem'
 import PostForm from './components/PostForm'
-import CommentForm from './components/CommentForm'
 import PostItem from './components/PostItem'
 import * as ReadableAPI from './utils/ReadableAPI'
 import './App.css';
@@ -59,10 +61,16 @@ class ReadableApp extends Component {
                 </div>
           )}/>
           <Route exact path={`/edit_post`} render={() => (
-                <div>Edit Post.</div>
+                <div>
+                  <EditPost
+                    parentId={this.props.dashboard.parentId}
+                    parentTitle={this.props.dashboard.parentTitle}
+                    parentBody={this.props.dashboard.parentBody}
+                  />
+                </div>
           )}/>
           <Route exact path={`/edit_comment`} render={() => (
-                <div>Edit Comment.</div>
+                <div><EditComment/></div>
           )}/>
           {(this.props.category.length > 0)
             ? this.props.category.map((item) => (

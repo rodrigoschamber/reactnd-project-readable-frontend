@@ -64,8 +64,7 @@ const updateServer = store => next => action => {
     break
     case EDIT_POST:
       try{
-        console.log(action.postToEdit)
-        //ReadableAPI.editPost(action.postToEdit)
+        ReadableAPI.editPost(action.postToEdit).then(alert('The post was edited successfully!'))
       }
       catch(error){
         console.log(error, store.getState())

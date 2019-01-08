@@ -11,7 +11,9 @@ export const DOWN_VOTE = 'DOWN_VOTE'
 export const UP_VOTE_FOR_COMMENTS = 'UP_VOTE_FOR_COMMENTS'
 export const DOWN_VOTE_FOR_COMMENTS = 'DOWN_VOTE_FOR_COMMENTS'
 export const LOAD_CATEGORY = 'LOAD_CATEGORY'
+export const SET_DASHBOARD_TO_EDIT_POST = 'SET_DASHBOARD_TO_EDIT_POST'
 export const SET_DASHBOARD_TO_ADD_COMMENT = 'SET_DASHBOARD_TO_ADD_COMMENT'
+export const SET_DASHBOARD_TO_EDIT_COMMENT = 'SET_DASHBOARD_TO_EDIT_COMMENT'
 
 export function loadPost({posts}){
   return {
@@ -104,9 +106,23 @@ export function loadCategory ({ category }) {
   }
 }
 
+export function setDashBoardToEditPost({postToEdit}){
+  return {
+    type: SET_DASHBOARD_TO_EDIT_POST,
+    postToEdit,
+  }
+}
+
 export function setDashBoardToAddComment({commentToAdd}){
   return {
     type: SET_DASHBOARD_TO_ADD_COMMENT,
     commentToAdd,
+  }
+}
+
+export function setDashBoardToEditComment({commentToEdit}){
+  return {
+    type: SET_DASHBOARD_TO_EDIT_COMMENT,
+    commentToEdit,
   }
 }
