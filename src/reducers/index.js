@@ -59,7 +59,7 @@ function post (state={}, action){
           }
           : commentItem  
         ))
-      }        
+      }
       : postItem
     )
     case LOAD_POST:
@@ -67,7 +67,7 @@ function post (state={}, action){
         (postToLoad.id !== "")
           ? (postToLoad.commentCount===0)
             ? {...postToLoad,
-                comments:[{}],
+                comments:[],
             }
             : {...postToLoad}
           : null
@@ -97,22 +97,22 @@ function post (state={}, action){
         ? {...postItem,
           commentCount: postItem.commentCount + 1,
           comments: Object.assign(
-            [...postItem.comments], {[Object.keys(...postItem.comments).length]: action.commentToAdd}
+            [...postItem.comments], {[Object.keys(postItem.comments).length]: action.commentToAdd}
           ),
         }
         : postItem
       )
     case REMOVE_COMMENT:
       return state.map((postItem) =>
-      (postItem.id===action.commentToRemove.parentId)
-      ? {...postItem,
-        commentCount: postItem.commentCount - 1,
-        comments: postItem.comments.filter((commentItem)=>(
-          (commentItem.id===action.commentToRemove.id)
-          ? null
-          : commentItem
-        ))
-        }
+        (postItem.id===action.commentToRemove.parentId)
+        ? {...postItem,
+          commentCount: postItem.commentCount - 1,
+          comments: postItem.comments.filter((commentItem)=>(
+            (commentItem.id===action.commentToRemove.id)
+            ? null
+            : commentItem
+          ))
+          }
         : postItem
       )
     case EDIT_COMMENT:
