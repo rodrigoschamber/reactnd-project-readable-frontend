@@ -70,7 +70,14 @@ class ReadableApp extends Component {
                 </div>
           )}/>
           <Route exact path={`/edit_comment`} render={() => (
-                <div><EditComment/></div>
+                <div>
+                  <EditComment
+                    id={this.props.dashboard.id}
+                    parentId={this.props.dashboard.parentId}
+                    parentBody={this.props.dashboard.parentBody}
+                    parentCategory={this.props.dashboard.parentCategory}
+                  />
+                </div>
           )}/>
           {(this.props.category.length > 0)
             ? this.props.category.map((item) => (

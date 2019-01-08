@@ -127,7 +127,22 @@ function post (state={}, action){
         : postItem
       )
     case EDIT_COMMENT:
-      return state
+      return state.map((postItem)=>
+        (postItem.id===action.commentToEdit.parentId)
+        ? {...postItem,
+            comments: postItem.comments.map((commentItem)=>
+              (commentItem.id===action.commentToEdit.id)
+              ? {...commentItem,
+                  body: action.commentToEdit.body,
+                  timestamp: action.commentToEdit.timestamp,
+              }
+              : {
+                commentItem,
+              }
+            )
+        }
+        : postItem,
+      )
     default:
       return state
   }

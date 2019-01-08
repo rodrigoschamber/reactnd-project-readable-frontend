@@ -88,8 +88,7 @@ const updateServer = store => next => action => {
     break
     case EDIT_COMMENT:
       try{
-        console.log(action.commentToEdit)
-        //ReadableAPI.editComment(id, action.commentToEdit)
+        ReadableAPI.editComment(action.commentToEdit).then(alert('The comment was edited successfully!'))
       }
       catch(error){
         console.log(error, store.getState())

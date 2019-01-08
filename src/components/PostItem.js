@@ -12,6 +12,7 @@ import {
     removeComment,
     setDashBoardToEditPost,
     setDashBoardToAddComment,
+    setDashBoardToEditComment,
 } from '../actions'
 import '../ReadableApp.js'
 
@@ -179,7 +180,17 @@ class PostItem extends React.Component{
                                                     <div className="tooltip">
                                                         <span className="tooltiptext">Edit comment.</span>
                                                         <Link to={`/edit_comment`} className="link-top">
-                                                            <FaEdit className='react-icons'/>
+                                                            <FaEdit
+                                                                className='react-icons'
+                                                                onClick={() => this.props.dispatch(setDashBoardToEditComment({
+                                                                    commentToEdit: {
+                                                                        id: childItem.id,
+                                                                        parentId: childItem.parentId,
+                                                                        parentBody: childItem.body,
+                                                                        parentCategory: item.category,
+                                                                    }
+                                                                }))}
+                                                            />
                                                         </Link>
                                                     </div>
                                                     <div className="tooltip">

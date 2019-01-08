@@ -22,6 +22,7 @@ class EditPost extends React.Component{
     componentDidMount() {
         this.setState({
             id: this.props.parentId,
+            title: this.props.parentTitle,
         });
     }
     handleChangeTitle(event) {
