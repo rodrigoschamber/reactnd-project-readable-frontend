@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import {FaArrowDown, FaArrowUp, FaEdit, FaEraser, FaPlus} from 'react-icons/fa'
 import {
     upVote,
@@ -15,11 +15,24 @@ import {
 import '../ReadableApp.js'
 
 class PostItem extends React.Component{
+    state = {
+        ableToRedirect:"false",
+    };
+    handleSubmit = this.handleSubmit.bind(this);
     static propTypes = {
         setId: PropTypes.string.isRequired,
         setCategory: PropTypes.string.isRequired,  
     }
+    handleSubmit(event) {
+            event.preventDefault();
+            this.setState({
+                ableToRedirect: true,
+            });
+    }
     render(){
+        if (this.state.ableToRedirect===true){
+            return <Redirect key="/" to='/'/>
+        }
         let showingPosts = this.props.post.filter((item)=>(item.id===this.props.setId))
         let currentView = this.props.setCategory
         function milisecToString(toString){
@@ -110,14 +123,16 @@ class PostItem extends React.Component{
                                         </div>
                                         <div className="tooltip">
                                             <span className="tooltiptext">Edit post.</span>
-                                            <FaEdit className='react-icons'/>
+                                            <Link to={`/edit_post`} className="link-top">
+                                                <FaEdit className='react-icons'/>
+                                            </Link>
                                         </div>
                                         <div className="tooltip">
                                             <span className="tooltiptext">Delete post.</span>
                                             <FaEraser className='react-icons' onClick={()=>
                                                 this.props.dispatch(removePost({
                                                     postToRemove: item,
-                                                }))
+                                                })) //&& (this.handleSubmit)
                                             }/>
                                         </div>
                                     </div>
@@ -153,7 +168,9 @@ class PostItem extends React.Component{
                                                     </div>
                                                     <div className="tooltip">
                                                         <span className="tooltiptext">Edit comment.</span>
-                                                        <FaEdit className='react-icons'/>
+                                                        <Link to={`/edit_comment`} className="link-top">
+                                                            <FaEdit className='react-icons'/>
+                                                        </Link>
                                                     </div>
                                                     <div className="tooltip">
                                                         <span className="tooltiptext">Delete comment.</span>

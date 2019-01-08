@@ -4,7 +4,7 @@ import {Redirect} from 'react-router-dom'
 import { addPost } from '../actions'
 import '../ReadableApp.js'
 
-class MainPostForm extends React.Component{
+class PostForm extends React.Component{
     state = {
         title: "How to add a new post",
         author: "rsscss",
@@ -134,6 +134,6 @@ function mapStateToProps(toProps){
     return toProps
 }
 
-export default connect(mapStateToProps)(MainPostForm);
+export default connect(mapStateToProps)(PostForm);
 
   

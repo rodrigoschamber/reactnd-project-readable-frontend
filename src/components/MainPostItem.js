@@ -99,7 +99,9 @@ class MainPostItem extends React.Component{
                                         </div>
                                         <div className="tooltip">
                                             <span className="tooltiptext">Edit post.</span>
-                                            <FaEdit className='react-icons'/>
+                                            <Link to={`/edit_post`} className="link-top">
+                                                <FaEdit className='react-icons'/>
+                                            </Link>
                                         </div>
                                         <div className="tooltip">
                                             <span className="tooltiptext">Delete post.</span>

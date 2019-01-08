@@ -15,6 +15,15 @@ label {
   display: inline-block;
 }
 
+a:link, a:visited {
+  background-color: none;
+  color: black;
+  padding: 0px 0px;
+  text-align: center; 
+  text-decoration: none;
+  display: inline-block;
+}
+
 input[type=submit] {
   background-color: #555555;
   color: white;
