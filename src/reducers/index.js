@@ -89,7 +89,7 @@ function post (state={}, action){
               body: action.postToEdit.body,
             }
           : {
-            postItem,
+            ...postItem,
           }
       )
     case LOAD_COMMENT:
@@ -137,7 +137,7 @@ function post (state={}, action){
                   timestamp: action.commentToEdit.timestamp,
               }
               : {
-                commentItem,
+                ...commentItem,
               }
             )
         }
